@@ -1,5 +1,5 @@
 export const MAP_CONFIG = {
-  center: [35.1531, 129.1186] as [number, number],
+  center: [35.1542, 129.1189] as [number, number],
   zoom: 18,
   maxZoom: 20,
   minZoom: 16,
