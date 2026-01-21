@@ -10,6 +10,13 @@ export const LocationPopup = ({ location }: LocationPopupProps) => {
   const category = location.categories[0] ?? '맛집';
   const style = getCategoryStyle(category);
 
+  const navigateLocate = () => {
+    /* 
+      네이버 길찾기 링크
+      https://map.naver.com/p/directions/14356526.4200537,4178357.2034575,153%EA%B5%AC%ED%8F%AC%EA%B5%AD%EC%88%98%20%ED%95%98%EB%8B%A8%EC%A0%90,1773391698,PLACE_POI/-/-/car?c=14.00,0,0,0,dh
+    */
+  }
+
   return (
     <div className="w-[220px]">
       <img
@@ -43,12 +50,13 @@ export const LocationPopup = ({ location }: LocationPopupProps) => {
           className={cn(
             'w-full mt-3 py-2 rounded-lg',
             'bg-gradient-to-r from-accent-pink/30 to-accent-purple/30',
-            'text-white text-xs font-semibold',
+            'text-black text-xs font-semibold',
             'transition-all duration-300',
             'hover:shadow-[0_4px_15px_var(--shadow-color)]'
           )}
+          onClick={navigateLocate}
         >
-          💜 저장하기
+          🧭 길찾기
         </button>
       </div>
     </div>

@@ -60,6 +60,7 @@ export const MapContainer = ({ locations, onLocationSelect, selectedLocation }: 
         zoom={MAP_CONFIG.zoom}
         zoomControl={false}
         className="h-full w-full"
+        scrollWheelZoom={false}
       >
         <TileLayerSwitcher />
         <MapController selectedLocation={selectedLocation} />

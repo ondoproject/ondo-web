@@ -1,8 +1,8 @@
 export const MAP_CONFIG = {
   center: [35.1531, 129.1186] as [number, number],
-  zoom: 15,
-  maxZoom: 19,
-  minZoom: 13,
+  zoom: 18,
+  maxZoom: 20,
+  minZoom: 16,
 };
 
 export const TILE_URLS = {
