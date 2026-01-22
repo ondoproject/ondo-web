@@ -11,21 +11,33 @@ export const LocationPopup = ({ location }: LocationPopupProps) => {
   const style = getCategoryStyle(category);
 
   const navigateLocate = () => {
-    /* 
-      네이버 길찾기 링크
-      https://map.naver.com/p/directions/14356526.4200537,4178357.2034575,153%EA%B5%AC%ED%8F%AC%EA%B5%AD%EC%88%98%20%ED%95%98%EB%8B%A8%EC%A0%90,1773391698,PLACE_POI/-/-/car?c=14.00,0,0,0,dh
-    */
-  }
+    /* 현재 네이버 지도 앱을 이용하지 않고 새탭을 열어서 사용 */
+    const { px: dLongitude, py: dLatitude, name: dName } = location;
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const sLatitude = pos.coords.latitude;
+        const sLongitude = pos.coords.longitude;
+        const url = `https://map.naver.com/p/directions/${sLongitude},${sLatitude},내위치/${dLongitude},${dLatitude},${encodeURIComponent(dName)}/-/walk`;
+        window.open(url, '_blank');
+      },
+      () => {
+        const url = `https://map.naver.com/p/directions/-,,/${dLongitude},${dLatitude},${encodeURIComponent(dName)}/-/walk`;
+        window.open(url, '_blank');
+      },
+      { enableHighAccuracy: true, timeout: 3000 }
+    );
+  };
 
   return (
-    <div className="flex-1 w-full">
-      <img
+    <div className="w-full">
+      {/*<img
         src={location.thumbnail}
         alt={location.name}
         className="w-full h-28 object-cover"
-      />
+      />*/}
       <div className="flex flex-col py-2 px-4">
-        <span className={cn('text-xs font-semibold uppercase tracking-wider', style.textClass)}>
+        <span className={cn('text-xs font-semibold uppercase tracking-wider py-2', style.textClass)}>
           {category}
         </span>
         <span className="text-base font-bold text-[var(--text-primary)]">
@@ -36,7 +48,7 @@ export const LocationPopup = ({ location }: LocationPopupProps) => {
             {location.address}
           </p>
         )}
-        <div className="flex flex-row justify-between flex-wrap items-center pb-4">
+        <div className="flex flex-row justify-between flex-wrap items-center">
           <div>
             {location.categories.map((cat) => (
               <span

@@ -10,9 +10,9 @@ export const Header = ({ onSearchClick }: HeaderProps) => {
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <header className="bg-[var(--bg-secondary)] backdrop-blur-md px-5 py-4 flex items-center justify-between border-b border-[var(--border-color)] z-[1000]">
+    <header className="bg-[var(--bg-secondary)] backdrop-blur-md p-2 flex items-center justify-between border-b border-[var(--border-color)] z-[1000]">
       <h1 className="text-2xl font-bold bg-gradient-to-r from-accent-pink via-accent-purple to-accent-cyan bg-clip-text text-transparent">
-        🌡️ 온도
+        Ondo
       </h1>
       
       <div className="flex items-center gap-2.5">
