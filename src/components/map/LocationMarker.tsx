@@ -49,7 +49,9 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
         }}
       >
         <Popup>
-          <LocationPopup location={location} />
+          <div className="w-50 h-60">
+            <LocationPopup location={location} />
+          </div>
         </Popup>
       </Marker>
       {createPortal(IconComponent, container)}

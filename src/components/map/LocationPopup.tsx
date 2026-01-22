@@ -18,46 +18,50 @@ export const LocationPopup = ({ location }: LocationPopupProps) => {
   }
 
   return (
-    <div className="w-[220px]">
+    <div className="flex-1 w-full">
       <img
         src={location.thumbnail}
         alt={location.name}
         className="w-full h-28 object-cover"
       />
-      <div className="p-3">
-        <span className={cn('text-[10px] font-semibold uppercase tracking-wider', style.textClass)}>
+      <div className="flex flex-col py-2 px-4">
+        <span className={cn('text-xs font-semibold uppercase tracking-wider', style.textClass)}>
           {category}
         </span>
-        <h3 className="text-base font-bold text-[var(--text-primary)] mt-1">
+        <span className="text-base font-bold text-[var(--text-primary)]">
           {location.name}
-        </h3>
+        </span>
         {location.address && (
-          <p className="text-xs text-[var(--text-secondary)] mt-1.5 line-clamp-2">
+          <p className="text-xs text-[var(--text-secondary)] line-clamp-2">
             {location.address}
           </p>
         )}
-        <div className="flex gap-1.5 mt-2 flex-wrap">
-          {location.categories.map((cat) => (
-            <span
-              key={cat}
-              className="text-[10px] px-2 py-1 rounded-lg bg-accent-pink/10 text-accent-pink"
+        <div className="flex flex-row justify-between flex-wrap items-center pb-4">
+          <div>
+            {location.categories.map((cat) => (
+              <span
+                key={cat}
+                className="text-[10px] rounded-lg bg-accent-pink/10 text-accent-pink"
+              >
+                #{cat}
+              </span>
+            ))}
+          </div>
+          <div>
+            <button
+              className={cn(
+                  'w-full p-2 rounded-lg',
+                  'bg-gradient-to-r from-accent-pink/30 to-accent-purple/30',
+                  'text-black text-xs font-semibold',
+                  'transition-all duration-300',
+                  'hover:scale-110'
+                )}
+                onClick={navigateLocate}
             >
-              #{cat}
-            </span>
-          ))}
+              ℹ️ 길찾기
+            </button>
+          </div>
         </div>
-        <button
-          className={cn(
-            'w-full mt-3 py-2 rounded-lg',
-            'bg-gradient-to-r from-accent-pink/30 to-accent-purple/30',
-            'text-black text-xs font-semibold',
-            'transition-all duration-300',
-            'hover:shadow-[0_4px_15px_var(--shadow-color)]'
-          )}
-          onClick={navigateLocate}
-        >
-          🧭 길찾기
-        </button>
       </div>
     </div>
   );
