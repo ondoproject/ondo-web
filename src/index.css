@@ -54,7 +54,7 @@ header {
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: background 0.4s ease, color 0.4s ease;
