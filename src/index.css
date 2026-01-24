@@ -4,9 +4,9 @@
 
 :root {
   /* Light mode */
-  --bg-primary: #fff9f5;
-  --bg-secondary: rgba(255, 255, 255, 0.95);
-  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-primary: #ffffff;
+  --bg-secondary: #F2EDE4;
+  --bg-card: #E6E0D4;
   --text-primary: #4a4a4a;
   --text-secondary: #8a7a7a;
   --text-muted: #aaa;
@@ -14,7 +14,7 @@
   --accent-cyan: #00b4d8;
   --accent-purple: #9d4edd;
   --accent-orange: #ff9f1c;
-  --border-color: rgba(255, 107, 156, 0.3);
+  --border-color: rgba(136, 91, 44, 0.3);
   --shadow-color: rgba(255, 107, 156, 0.2);
   --glow-opacity: 0.4;
   --map-filter: saturate(1.1) brightness(1.05);
@@ -42,6 +42,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+header {
+  font-family: 'Times New Roman', Times, serif;
 }
 
 body {

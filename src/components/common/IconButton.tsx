@@ -14,12 +14,11 @@ export const IconButton = ({ icon: Icon, onClick, label, className }: IconButton
       onClick={onClick}
       aria-label={label}
       className={cn(
-        'w-11 h-11 rounded-xl',
-        'border border-[var(--border-color)]',
+        'w-10 h-10 rounded-xl',
         'bg-[var(--bg-card)] backdrop-blur-sm',
         'flex items-center justify-center',
         'transition-all duration-300',
-        'hover:scale-105 hover:shadow-[0_0_15px_var(--shadow-color)]',
+        'hover:scale-105',
         className
       )}
     >
