@@ -3,7 +3,6 @@ import L from 'leaflet';
 import type { Location } from '@/types';
 import { getCategoryStyle } from '@/constants';
 import { LocationPopup } from './LocationPopup';
-import { Beer, Coffee, UtensilsCrossed } from 'lucide-react';
 import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -19,24 +18,23 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
 
   const icon = useMemo(() => {
     return L.divIcon({
-      className: 'custom-marker', 
+      className: "", 
       html: container, 
-      iconSize: [40, 60],
       iconAnchor: [60, 60],
-      popupAnchor: [-30, -50],
     });
   }, [container]);
 
   const IconComponent = (
-    <div className="marker-pin animate-float">
-      <div className={`marker-icon ${style.bgClass} border-2 ${style.borderClass} ${style.glowClass} flex items-center justify-center w-full h-full rounded-full`}>
-        <span className={`${style.textClass}`}>
-          {category === "맛집" && <UtensilsCrossed size={16} />}
-          {category === "카페" && <Coffee size={16} />}
-          {category === "술집" && <Beer size={16} />}
-        </span>
+    <div className="relative flex flex-col items-center animate-float">
+      <div className="relative w-4 h-4 flex items-center justify-center">
+        <div className="absolute inset-0 rounded-full shadow-md" />
+        <div className="absolute -bottom-1 w-4 h-4 rotate-45" />
+        <div className={`absolute w-6 h-6 rounded-full border-2 bg-white ${style.borderClass} z-10 flex items-center justify-center`}>
+          <div className="w-full h-full rounded-full border-[#634E3C]" />
+        </div>
       </div>
-      <div className={`marker-glow absolute inset-0 -z-10 bg-${style.color}-500 opacity-20 blur-lg`}></div>
+      <div className="w-6 h-2 bg-black/20 rounded-[100%] blur-[1px] mt-1.5" />
+      <div className={`absolute inset-0 -z-10 ${style.glowClass} opacity-30 blur-xl`}></div>
     </div>
   );
 

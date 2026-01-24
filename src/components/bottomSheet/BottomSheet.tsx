@@ -65,15 +65,12 @@ export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) =
         )}
       >
         <div className="mb-3.5">
-          <h3 className="text-lg font-bold bg-gradient-to-r from-accent-pink to-accent-cyan bg-clip-text text-transparent">
-            ✨ 지금 뜨는 곳
-          </h3>
-          <p className="text-[11px] text-[var(--text-muted)]">
+          <p className="text-md text-[var(--accent-taupe)] font-bold">
             광안리 로컬들이 추천해요
           </p>
         </div>
 
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gradient">
+        <div className="flex flex-col gap-3 overflow-x pb-2 scrollbar-thin scrollbar-thumb-gradient">
           {locations.slice(0, 10).map((location) => (
             <PlaceCard
               key={location.id}

@@ -13,24 +13,24 @@ export const CATEGORY_STYLES: Record<string, CategoryStyle> = {
   '맛집': {
     icon: Utensils,
     color: 'pink',
-    bgClass: 'bg-accent-pink/20',
-    borderClass: 'border-accent-pink',
+    bgClass: 'bg-[--accent-bage]',
+    borderClass: 'border-[--accent-bage]',
     textClass: 'text-accent-pink',
     glowClass: 'shadow-[0_0_20px_rgba(255,107,156,var(--glow-opacity))]',
   },
   '카페': {
     icon: Coffee,
     color: 'cyan',
-    bgClass: 'bg-accent-cyan/20',
-    borderClass: 'border-accent-cyan',
+    bgClass: 'bg-black',
+    borderClass: 'border-black',
     textClass: 'text-accent-cyan',
     glowClass: 'shadow-[0_0_20px_rgba(0,212,255,var(--glow-opacity))]',
   },
   '술집': {
     icon: Wine,
     color: 'purple',
-    bgClass: 'bg-accent-purple/20',
-    borderClass: 'border-accent-purple',
+    bgClass: 'bg-[--accent-taupe]',
+    borderClass: 'border-[--accent-taupe]',
     textClass: 'text-accent-purple',
     glowClass: 'shadow-[0_0_20px_rgba(167,139,250,var(--glow-opacity))]',
   }
@@ -39,8 +39,8 @@ export const CATEGORY_STYLES: Record<string, CategoryStyle> = {
 const DEFAULT_STYLE: CategoryStyle = {
   icon: MapPin,
   color: 'pink',
-  bgClass: 'bg-accent-pink/20',
-  borderClass: 'border-accent-pink',
+  bgClass: 'bg-[accent-bage]',
+  borderClass: 'border-[accent-bage]',
   textClass: 'text-accent-pink',
   glowClass: 'shadow-[0_0_20px_rgba(255,107,156,var(--glow-opacity))]',
 };

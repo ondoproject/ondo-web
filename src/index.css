@@ -4,9 +4,9 @@
 
 :root {
   /* Light mode */
-  --bg-primary: #fff9f5;
-  --bg-secondary: rgba(255, 255, 255, 0.95);
-  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-primary: #ffffff;
+  --bg-secondary: #F2EDE4;
+  --bg-card: #E6E0D4;
   --text-primary: #4a4a4a;
   --text-secondary: #8a7a7a;
   --text-muted: #aaa;
@@ -14,8 +14,11 @@
   --accent-cyan: #00b4d8;
   --accent-purple: #9d4edd;
   --accent-orange: #ff9f1c;
-  --border-color: rgba(255, 107, 156, 0.3);
-  --shadow-color: rgba(255, 107, 156, 0.2);
+  --accent-taupe: #755338;
+  --accent-bage: #f9d898;
+  --border-color: rgba(136, 91, 44, 0.3);
+  --border-accent-color: rgba(136, 91, 44, 0.5);
+  --shadow-color: rgba(136, 91, 44, 0.4);
   --glow-opacity: 0.4;
   --map-filter: saturate(1.1) brightness(1.05);
 }
@@ -32,6 +35,8 @@
   --accent-cyan: #00d4ff;
   --accent-purple: #a78bfa;
   --accent-orange: #ffb86c;
+  --accent-taupe: #eac3a3;
+  --accent-bage: #fafaea;
   --border-color: rgba(255, 107, 237, 0.4);
   --shadow-color: rgba(255, 107, 237, 0.3);
   --glow-opacity: 0.8;
@@ -44,8 +49,12 @@
   box-sizing: border-box;
 }
 
+header {
+  font-family: 'Times New Roman', Times, serif;
+}
+
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: background 0.4s ease, color 0.4s ease;
