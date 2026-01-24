@@ -62,30 +62,23 @@
   border-radius: 0 0 10px 10px !important;
 }
 
-/* Custom marker styles */
-.custom-marker {
-  background: none;
-  border: none;
-}
-
 .marker-pin {
-  width: 64px;
-  height: 64px;
+  width: 24px;
+  height: 24px;
   display: flex;
+  border: none;
   flex-direction: column;
   align-items: center;
 }
 
 .marker-icon {
-  width: 44px;
-  height: 44px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2.5px solid;
   transition: all 0.4s ease;
-  font-size: 20px;
 }
 
 .marker-glow {

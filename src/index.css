@@ -14,6 +14,8 @@
   --accent-cyan: #00b4d8;
   --accent-purple: #9d4edd;
   --accent-orange: #ff9f1c;
+  --accent-taupe: #755338;
+  --accent-bage: #f9d898;
   --border-color: rgba(136, 91, 44, 0.3);
   --border-accent-color: rgba(136, 91, 44, 0.5);
   --shadow-color: rgba(136, 91, 44, 0.4);
@@ -33,6 +35,8 @@
   --accent-cyan: #00d4ff;
   --accent-purple: #a78bfa;
   --accent-orange: #ffb86c;
+  --accent-taupe: #eac3a3;
+  --accent-bage: #fafaea;
   --border-color: rgba(255, 107, 237, 0.4);
   --shadow-color: rgba(255, 107, 237, 0.3);
   --glow-opacity: 0.8;
