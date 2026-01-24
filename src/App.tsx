@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/contexts';
 import { useLocations } from '@/hooks';
 import { Header, CategoryPills, SearchModal, MapContainer, BottomSheet } from '@/components';
 import type { Location } from '@/types';
+import { BottomSheetProvider, useBottomSheet } from '@/contexts/BottomSheetContext';
 
 const AppContent = () => {
   const { locations, categories, isLoading, error } = useLocations();
@@ -10,6 +11,7 @@ const AppContent = () => {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const { expand } = useBottomSheet();
 
   const filteredLocations = useMemo(() => {
     let filtered = locations;
@@ -32,6 +34,11 @@ const AppContent = () => {
 
     return filtered;
   }, [locations, selectedCategory, searchQuery]);
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category); 
+    expand(); 
+  };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -70,7 +77,7 @@ const AppContent = () => {
       <CategoryPills
         categories={categories}
         selected={selectedCategory}
-        onSelect={setSelectedCategory}
+        onSelect={handleCategorySelect}
       />
 
       <div className="relative h-[calc(100vh-130px)]">
@@ -98,7 +105,9 @@ const AppContent = () => {
 const App = () => {
   return (
     <ThemeProvider>
-      <AppContent />
+      <BottomSheetProvider>
+        <AppContent />
+      </BottomSheetProvider>
     </ThemeProvider>
   );
 };

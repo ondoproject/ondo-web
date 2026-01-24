@@ -1,6 +1,6 @@
 import { ChevronUp } from 'lucide-react';
 import { cn } from '@/utils';
-import { useBottomSheet } from '@/hooks';
+import { useBottomSheet } from '@/contexts/BottomSheetContext';
 import type { Location } from '@/types';
 import { PlaceCard } from './PlaceCard';
 
@@ -40,7 +40,7 @@ export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) =
             'w-10 h-1 rounded-full mb-1.5',
             'transition-all duration-300',
             isCollapsed 
-              ? 'bg-accent-pink shadow-[0_0_10px_var(--shadow-color)]' 
+              ? 'bg-[var(--text-muted)] shadow-[0_0_10px_var(--shadow-color)]' 
               : 'bg-[var(--border-color)]'
           )}
         />
