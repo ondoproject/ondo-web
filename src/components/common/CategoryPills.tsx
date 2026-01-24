@@ -1,5 +1,5 @@
 import { Sparkles } from 'lucide-react';
-import { cn } from '@/utils';
+import { cn, transformEngCategory } from '@/utils';
 import { getCategoryIcon } from '@/constants';
 
 interface CategoryPillsProps {
@@ -15,7 +15,7 @@ export const CategoryPills = ({ categories, selected, onSelect }: CategoryPillsP
     <div className="flex gap-2.5 px-5 py-3.5 overflow-x-auto bg-[var(--bg-secondary)] scrollbar-hide justify-center items-center">
       {allCategories.map((category) => {
         const isActive = selected === category;
-        const Icon = category === '전체' ? Sparkles : getCategoryIcon(category);
+        const Icon = category === 'All' ? Sparkles : getCategoryIcon(category);
 
         return (
           <button
@@ -27,12 +27,12 @@ export const CategoryPills = ({ categories, selected, onSelect }: CategoryPillsP
               'flex items-center gap-1.5',
               'border transition-all duration-300',
               isActive
-                ? 'bg-gradient-to-r from-accent-pink/30 to-accent-purple/30 border-accent-pink text-black shadow-[0_0_20px_var(--shadow-color)]'
-                : 'bg-[var(--bg-card)] border-[var(--border-color)] text-[var(--text-secondary)] hover:border-accent-pink hover:-translate-y-0.5'
+                ? 'bg-gradient-to-r border-[var(--border-color)] text-black shadow-[0_0_20px_var(--shadow-color)]'
+                : 'bg-[var(--bg-card)] border-[var(--border-color)] text-[var(--text-secondary)] hover:border-[var(--border-accent-color)] hover:-translate-y-0.5'
             )}
           >
             <Icon className="w-4 h-4" />
-            {category}
+            {transformEngCategory(category)}
           </button>
         );
       })}

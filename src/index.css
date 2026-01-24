@@ -15,7 +15,8 @@
   --accent-purple: #9d4edd;
   --accent-orange: #ff9f1c;
   --border-color: rgba(136, 91, 44, 0.3);
-  --shadow-color: rgba(255, 107, 156, 0.2);
+  --border-accent-color: rgba(136, 91, 44, 0.5);
+  --shadow-color: rgba(136, 91, 44, 0.4);
   --glow-opacity: 0.4;
   --map-filter: saturate(1.1) brightness(1.05);
 }
