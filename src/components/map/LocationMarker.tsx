@@ -3,7 +3,6 @@ import L from 'leaflet';
 import type { Location } from '@/types';
 import { getCategoryStyle } from '@/constants';
 import { LocationPopup } from './LocationPopup';
-import { Beer, Circle, Coffee, UtensilsCrossed } from 'lucide-react';
 import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
 
