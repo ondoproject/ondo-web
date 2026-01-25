@@ -4,7 +4,7 @@ import { useLocations } from '@/hooks';
 import { Header, CategoryPills, SearchModal, MapContainer, BottomSheet } from '@/components';
 import type { Location } from '@/types';
 import { BottomSheetProvider, useBottomSheet } from '@/contexts/BottomSheetContext';
-import PlaceDetailCard from './components/common/PlaceDetailCard';
+import PlaceDetailCard from './components/bottomSheet/PlaceDetailCard';
 
 const AppContent = () => {
   const { locations, categories, isLoading, error } = useLocations();

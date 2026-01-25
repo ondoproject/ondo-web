@@ -1,8 +1,8 @@
-import { ChevronUp } from 'lucide-react';
 import { cn } from '@/utils';
 import { useBottomSheet } from '@/contexts/BottomSheetContext';
 import type { Location } from '@/types';
 import { PlaceCard } from '../common/PlaceCard';
+import BottomSheetLayout from './layout/BottomSheetLayout';
 
 interface BottomSheetProps {
   locations: Location[];
@@ -10,52 +10,14 @@ interface BottomSheetProps {
 }
 
 export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) => {
-  const { isCollapsed, toggle, handlers } = useBottomSheet();
+  const { isCollapsed } = useBottomSheet();
 
   const handleCardClick = (location: Location) => {
     onLocationSelect(location);
   };
 
   return (
-    <div
-      className={cn(
-        'absolute bottom-0 left-0 right-0',
-        'bg-[var(--bg-secondary)] backdrop-blur-lg',
-        'rounded-t-3xl',
-        'border-t border-[var(--border-color)]',
-        'shadow-[0_-4px_30px_rgba(0,0,0,0.15)]',
-        'z-[1000]',
-        'transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]',
-        isCollapsed && 'translate-y-[calc(100%-56px)]'
-      )}
-    >
-      {/* Handle */}
-      <div
-        {...handlers}
-        onClick={toggle}
-        className="flex flex-col items-center py-3 px-5 cursor-grab active:cursor-grabbing"
-      >
-        <div
-          className={cn(
-            'w-10 h-1 rounded-full mb-1.5',
-            'transition-all duration-300',
-            isCollapsed 
-              ? 'bg-[var(--text-muted)] shadow-[0_0_10px_var(--shadow-color)]' 
-              : 'bg-[var(--border-color)]'
-          )}
-        />
-        <div
-          className={cn(
-            'flex items-center gap-1 text-[11px] text-[var(--text-muted)]',
-            'transition-opacity duration-300',
-            isCollapsed ? 'opacity-100' : 'opacity-0'
-          )}
-        >
-          <ChevronUp className="w-3 h-3 animate-bounce-up" />
-          위로 스와이프
-        </div>
-      </div>
-
+    <BottomSheetLayout>
       {/* Content */}
       <div
         className={cn(
@@ -80,6 +42,6 @@ export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) =
           ))}
         </div>
       </div>
-    </div>
+    </BottomSheetLayout>
   );
 };

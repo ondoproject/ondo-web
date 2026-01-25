@@ -1,6 +1,7 @@
 import { Location } from "@/types";
-import { cn, transformEngCategory } from "@/utils";
-import RouteButton from "./RouteButton";
+import { transformEngCategory } from "@/utils";
+import RouteButton from "@/components/common/RouteButton";
+import BottomSheetLayout from "./layout/BottomSheetLayout";
 
 interface PlaceDetailCardProps {
   location: Location;
@@ -15,14 +16,8 @@ const PlaceDetailCard = ({ location }: PlaceDetailCardProps) => {
   console.log("렌더링 시도 중:", location.name);
 
   return (
-    <div 
-      className={cn(
-        "flex flex-col px-4 py-4 w-full h-[300px]",
-        "absolute bottom-0 left-0 right-0",
-        "rounded-t-3xl z-[9999] bg-[var(--bg-secondary)]"
-      )}
-    >
-      <div className="flex flex-col items-center pt-4">
+    <BottomSheetLayout>
+      <div className="flex flex-col items-center px-4">
         {location.thumbnail && (
           <img 
             src={location.thumbnail} 
@@ -45,7 +40,7 @@ const PlaceDetailCard = ({ location }: PlaceDetailCardProps) => {
           </div>
         </div>  
       </div>
-    </div>
+    </BottomSheetLayout>
   );
 };
 
