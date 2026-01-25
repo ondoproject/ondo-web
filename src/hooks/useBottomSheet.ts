@@ -1,3 +1,4 @@
+/* 페이지 전체에서 전역으로 상태 동작 해야 하므로 컨텍스트로 이동 (향 후 폐기) */
 import { useState, useCallback, useRef } from 'react';
 
 interface UseBottomSheetReturn {

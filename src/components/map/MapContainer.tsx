@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { MapContainer as LeafletMapContainer, TileLayer, useMap } from 'react-leaflet';
-import { MapPin } from 'lucide-react';
 import { useTheme } from '@/contexts';
 import { MAP_CONFIG, TILE_URLS, TILE_ATTRIBUTION } from '@/constants';
-import { cn } from '@/utils';
 import type { Location } from '@/types';
 import { LocationMarker } from './LocationMarker';
+import L from 'leaflet';
 
 interface MapContainerProps {
   locations: Location[];
@@ -38,9 +37,15 @@ const MapController = ({ selectedLocation }: { selectedLocation?: Location | nul
 
   useEffect(() => {
     if (selectedLocation) {
-      map.setView([selectedLocation.py, selectedLocation.px], 17, {
+      const bounds = L.latLngBounds(
+        [selectedLocation.py - 0.0001, selectedLocation.px - 0.0001],
+        [selectedLocation.py + 0.0001, selectedLocation.px + 0.0001]
+      );
+      map.fitBounds(bounds, {
+        paddingBottomRight: [0, 320],
         animate: true,
         duration: 0.5,
+        maxZoom: 17,
       });
     }
   }, [map, selectedLocation]);
@@ -49,9 +54,6 @@ const MapController = ({ selectedLocation }: { selectedLocation?: Location | nul
 };
 
 export const MapContainer = ({ locations, onLocationSelect, selectedLocation }: MapContainerProps) => {
-  const resetView = () => {
-    // 이 기능은 map ref를 통해 구현하거나 상위에서 처리
-  };
 
   return (
     <div className="relative h-full w-full">
@@ -70,26 +72,10 @@ export const MapContainer = ({ locations, onLocationSelect, selectedLocation }: 
             key={location.id}
             location={location}
             onSelect={onLocationSelect}
+            isSelected={selectedLocation?.id === location.id}
           />
         ))}
       </LeafletMapContainer>
-
-      {/* FAB - 현재 위치로 */}
-      <button
-        onClick={resetView}
-        className={cn(
-          'absolute right-4 bottom-4 z-[999]',
-          'w-12 h-12 rounded-full',
-          'bg-gradient-to-r from-accent-pink/30 to-accent-purple/30',
-          'border border-accent-pink/50',
-          'shadow-[0_4px_20px_var(--shadow-color)]',
-          'flex items-center justify-center',
-          'transition-all duration-300',
-          'hover:scale-110'
-        )}
-      >
-        <MapPin className="w-5 h-5 text-white" />
-      </button>
     </div>
   );
 };
