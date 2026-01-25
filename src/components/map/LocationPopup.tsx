@@ -1,14 +1,10 @@
 import type { Location } from '@/types';
-import { getCategoryStyle } from '@/constants';
-import { cn } from '@/utils';
 
 interface LocationPopupProps {
   location: Location;
 }
 
 export const LocationPopup = ({ location }: LocationPopupProps) => {
-  const category = location.categories[0] ?? '맛집';
-  const style = getCategoryStyle(category);
 
   return (
     <div className="w-full bg-white">

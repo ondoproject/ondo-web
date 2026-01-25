@@ -1,7 +1,5 @@
 import type { Location } from '@/types';
 import { cn, transformEngCategory } from '@/utils';
-import { navigateLocate } from '@/utils/route';
-import { MoveRight } from 'lucide-react';
 import RouteButton from './RouteButton';
 
 interface PlaceCardProps {
