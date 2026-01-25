@@ -2,6 +2,7 @@ import type { Location } from '@/types';
 import { cn, transformEngCategory } from '@/utils';
 import { navigateLocate } from '@/utils/route';
 import { MoveRight } from 'lucide-react';
+import RouteButton from './RouteButton';
 
 interface PlaceCardProps {
   location: Location;
@@ -39,12 +40,7 @@ export const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
           <p className="text-black font-semibold">
             {location.address}
           </p>
-          <div 
-            className="flex flex-row items-center gap-1 hover:scale-105 cursor-pointer"
-            onClick={() => navigateLocate(location)}
-          >
-            Directions <MoveRight size={12}/>
-          </div>
+          <RouteButton location={location} />
         </div>
       </div>
     </div>

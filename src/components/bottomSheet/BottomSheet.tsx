@@ -2,7 +2,7 @@ import { ChevronUp } from 'lucide-react';
 import { cn } from '@/utils';
 import { useBottomSheet } from '@/contexts/BottomSheetContext';
 import type { Location } from '@/types';
-import { PlaceCard } from './PlaceCard';
+import { PlaceCard } from '../common/PlaceCard';
 
 interface BottomSheetProps {
   locations: Location[];

@@ -4,11 +4,12 @@ import { useLocations } from '@/hooks';
 import { Header, CategoryPills, SearchModal, MapContainer, BottomSheet } from '@/components';
 import type { Location } from '@/types';
 import { BottomSheetProvider, useBottomSheet } from '@/contexts/BottomSheetContext';
+import PlaceDetailCard from './components/common/PlaceDetailCard';
 
 const AppContent = () => {
   const { locations, categories, isLoading, error } = useLocations();
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null); 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { expand } = useBottomSheet();
@@ -87,10 +88,16 @@ const AppContent = () => {
           selectedLocation={selectedLocation}
         />
 
-        <BottomSheet
-          locations={filteredLocations}
-          onLocationSelect={handleLocationSelect}
-        />
+        {
+          selectedLocation !== null ? (
+            <PlaceDetailCard location={selectedLocation} />
+          ) : (
+            <BottomSheet
+              locations={filteredLocations}
+              onLocationSelect={handleLocationSelect}
+            />
+          )
+        } 
       </div>
 
       <SearchModal

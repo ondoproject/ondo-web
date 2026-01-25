@@ -8,4 +8,5 @@ export interface Location {
   categories: string[];
   thumbnail: string;
   created_at: string;
+  description?: string | null;
 }
