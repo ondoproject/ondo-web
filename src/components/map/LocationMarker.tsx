@@ -22,7 +22,8 @@ export const LocationMarker = ({ location, onSelect, isSelected }: LocationMarke
     return L.divIcon({
       className: "", 
       html: container, 
-      iconAnchor: isSelected ? [16, 32] : [60, 60],
+      iconAnchor: [16, 32],
+      popupAnchor: [-8, -32],
     });
   }, [container, isSelected]);
 

@@ -37,7 +37,8 @@ const AppContent = () => {
   }, [locations, selectedCategory, searchQuery]);
 
   const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category); 
+    setSelectedCategory(category);
+    setSelectedLocation(null);
     expand(); 
   };
 

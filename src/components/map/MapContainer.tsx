@@ -4,6 +4,7 @@ import { useTheme } from '@/contexts';
 import { MAP_CONFIG, TILE_URLS, TILE_ATTRIBUTION } from '@/constants';
 import type { Location } from '@/types';
 import { LocationMarker } from './LocationMarker';
+import L from 'leaflet';
 
 interface MapContainerProps {
   locations: Location[];
@@ -36,9 +37,15 @@ const MapController = ({ selectedLocation }: { selectedLocation?: Location | nul
 
   useEffect(() => {
     if (selectedLocation) {
-      map.setView([selectedLocation.py, selectedLocation.px], 17, {
+      const bounds = L.latLngBounds(
+        [selectedLocation.py - 0.0001, selectedLocation.px - 0.0001],
+        [selectedLocation.py + 0.0001, selectedLocation.px + 0.0001]
+      );
+      map.fitBounds(bounds, {
+        paddingBottomRight: [0, 320],
         animate: true,
         duration: 0.5,
+        maxZoom: 17,
       });
     }
   }, [map, selectedLocation]);
