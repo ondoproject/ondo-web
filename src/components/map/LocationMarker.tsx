@@ -5,13 +5,15 @@ import { getCategoryStyle } from '@/constants';
 import { LocationPopup } from './LocationPopup';
 import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { MapPin } from 'lucide-react';
 
 interface LocationMarkerProps {
   location: Location;
   onSelect?: (location: Location) => void;
+  isSelected?: boolean;
 }
 
-export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
+export const LocationMarker = ({ location, onSelect, isSelected }: LocationMarkerProps) => {
   const category = location.categories[0] ?? '맛집';
   const style = getCategoryStyle(category)
   const container = useMemo(() => document.createElement('div'), []);
@@ -20,11 +22,15 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
     return L.divIcon({
       className: "", 
       html: container, 
-      iconAnchor: [60, 60],
+      iconAnchor: isSelected ? [16, 32] : [60, 60],
     });
-  }, [container]);
+  }, [container, isSelected]);
 
-  const IconComponent = (
+  const IconComponent = isSelected ? (
+    <div className="relative flex flex-col items-center">
+      <MapPin className="w-12 h-12 drop-shadow-lg animate-bounce" style={{ color: `${style.color}` }} />
+    </div>
+  ) : (
     <div className="relative flex flex-col items-center animate-float">
       <div className="relative w-4 h-4 flex items-center justify-center">
         <div className="absolute inset-0 rounded-full shadow-md" />

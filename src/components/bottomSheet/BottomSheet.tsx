@@ -71,7 +71,7 @@ export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) =
         </div>
 
         <div className="flex flex-col h-full overflow-y-auto pb-2 scrollbar-thin scrollbar-thumb-gradient">
-          {locations.slice(0, 10).map((location) => (
+          {locations.map((location) => (
             <PlaceCard
               key={location.id}
               location={location}

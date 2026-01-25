@@ -70,6 +70,7 @@ export const MapContainer = ({ locations, onLocationSelect, selectedLocation }: 
             key={location.id}
             location={location}
             onSelect={onLocationSelect}
+            isSelected={selectedLocation?.id === location.id}
           />
         ))}
       </LeafletMapContainer>
