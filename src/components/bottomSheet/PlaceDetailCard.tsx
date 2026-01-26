@@ -1,19 +1,16 @@
-import { Location } from "@/types";
 import { transformEngCategory } from "@/utils";
 import RouteButton from "@/components/common/RouteButton";
 import BottomSheetLayout from "./layout/BottomSheetLayout";
+import { useBottomSheet } from "@/contexts/BottomSheetContext";
 
-interface PlaceDetailCardProps {
-  location: Location;
-}
+interface PlaceDetailCardProps {}
 
-const PlaceDetailCard = ({ location }: PlaceDetailCardProps) => {
+const PlaceDetailCard = ({}: PlaceDetailCardProps) => {
+  const { selectedLocation: location } = useBottomSheet();
   if (!location) {
     console.log("데이터가 없어서 null 반환");
     return null;
   }
-
-  console.log("렌더링 시도 중:", location.name);
 
   return (
     <BottomSheetLayout>

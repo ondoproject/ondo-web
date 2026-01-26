@@ -4,12 +4,11 @@ import { useTheme } from '@/contexts';
 import { MAP_CONFIG, TILE_URLS, TILE_ATTRIBUTION } from '@/constants';
 import type { Location } from '@/types';
 import { LocationMarker } from './LocationMarker';
-import L from 'leaflet';
+import { useBottomSheet } from '@/contexts/BottomSheetContext';
 
 interface MapContainerProps {
   locations: Location[];
   onLocationSelect?: (location: Location) => void;
-  selectedLocation?: Location | null;
 }
 
 // 타일 레이어를 동적으로 변경하기 위한 컴포넌트
@@ -32,28 +31,37 @@ const TileLayerSwitcher = () => {
 };
 
 // 지도 중심 이동 컴포넌트
-const MapController = ({ selectedLocation }: { selectedLocation?: Location | null }) => {
+const MapController = () => {
   const map = useMap();
+  const { selectedLocation, isCollapsed } = useBottomSheet();
 
   useEffect(() => {
     if (selectedLocation) {
-      const bounds = L.latLngBounds(
-        [selectedLocation.py - 0.0001, selectedLocation.px - 0.0001],
-        [selectedLocation.py + 0.0001, selectedLocation.px + 0.0001]
-      );
-      map.fitBounds(bounds, {
-        paddingBottomRight: [0, 320],
-        animate: true,
-        duration: 0.5,
-        maxZoom: 17,
-      });
+      const currentZoom = map.getZoom();
+      const latlng: [number, number] = [selectedLocation.py, selectedLocation.px];
+      if (!isCollapsed) {
+        const point = map.latLngToContainerPoint(latlng);
+        point.y -= 160;
+        const adjustedLatLng = map.containerPointToLatLng(point);
+        map.setView(adjustedLatLng, currentZoom, {
+          animate: true,
+          duration: 0.5,
+        });
+      } else {
+        map.setView(latlng, currentZoom, {
+          animate: true,
+          duration: 0.5,
+        });
+      }
+    } else {
+      map.closePopup();
     }
-  }, [map, selectedLocation]);
+  }, [map, selectedLocation, isCollapsed]);
 
   return null;
 };
 
-export const MapContainer = ({ locations, onLocationSelect, selectedLocation }: MapContainerProps) => {
+export const MapContainer = ({ locations, onLocationSelect }: MapContainerProps) => {
 
   return (
     <div className="relative h-full w-full">
@@ -65,14 +73,13 @@ export const MapContainer = ({ locations, onLocationSelect, selectedLocation }: 
         scrollWheelZoom={false}
       >
         <TileLayerSwitcher />
-        <MapController selectedLocation={selectedLocation} />
+        <MapController />
         
         {locations.map((location) => (
           <LocationMarker
             key={location.id}
             location={location}
             onSelect={onLocationSelect}
-            isSelected={selectedLocation?.id === location.id}
           />
         ))}
       </LeafletMapContainer>

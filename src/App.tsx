@@ -9,10 +9,9 @@ import PlaceDetailCard from './components/bottomSheet/PlaceDetailCard';
 const AppContent = () => {
   const { locations, categories, isLoading, error } = useLocations();
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null); 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { expand } = useBottomSheet();
+  const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const filteredLocations = useMemo(() => {
     let filtered = locations;
@@ -48,6 +47,7 @@ const AppContent = () => {
 
   const handleLocationSelect = (location: Location) => {
     setSelectedLocation(location);
+    expand();
   };
 
   if (isLoading) {
@@ -86,12 +86,11 @@ const AppContent = () => {
         <MapContainer
           locations={filteredLocations}
           onLocationSelect={handleLocationSelect}
-          selectedLocation={selectedLocation}
         />
 
         {
           selectedLocation !== null ? (
-            <PlaceDetailCard location={selectedLocation} />
+            <PlaceDetailCard />
           ) : (
             <BottomSheet
               locations={filteredLocations}

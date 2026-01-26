@@ -6,14 +6,16 @@ import { LocationPopup } from './LocationPopup';
 import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { MapPin } from 'lucide-react';
+import { useBottomSheet } from '@/contexts/BottomSheetContext';
 
 interface LocationMarkerProps {
   location: Location;
   onSelect?: (location: Location) => void;
-  isSelected?: boolean;
 }
 
-export const LocationMarker = ({ location, onSelect, isSelected }: LocationMarkerProps) => {
+export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
+  const { selectedLocation } = useBottomSheet();
+  const isSelected = selectedLocation?.id === location.id;
   const category = location.categories[0] ?? '맛집';
   const style = getCategoryStyle(category)
   const container = useMemo(() => document.createElement('div'), []);

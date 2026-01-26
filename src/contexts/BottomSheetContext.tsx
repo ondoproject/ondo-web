@@ -1,7 +1,10 @@
 import { createContext, useContext, useState, useCallback, useRef, ReactNode } from 'react';
+import type { Location } from '@/types';
 
 interface BottomSheetContextType {
   isCollapsed: boolean;
+  selectedLocation: Location | null;
+  setSelectedLocation: (location: Location | null) => void;
   collapse: () => void;
   expand: () => void;
   toggle: () => void;
@@ -17,6 +20,7 @@ const BottomSheetContext = createContext<BottomSheetContextType | null>(null);
 
 export const BottomSheetProvider = ({ children }: { children: ReactNode }) => {
   const [isCollapsed, setIsCollapsed] = useState(true); // 초기값: 닫힘
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const startY = useRef(0);
   const currentY = useRef(0);
   const isDragging = useRef(false);
@@ -72,7 +76,7 @@ export const BottomSheetProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <BottomSheetContext.Provider value={{ isCollapsed, collapse, expand, toggle, handlers }}>
+    <BottomSheetContext.Provider value={{ isCollapsed, selectedLocation, setSelectedLocation, collapse, expand, toggle, handlers }}>
       {children}
     </BottomSheetContext.Provider>
   );
