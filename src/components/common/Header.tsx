@@ -1,13 +1,12 @@
-import { Search, Sun, Moon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { IconButton } from './IconButton';
-import { useTheme } from '@/contexts/ThemeContext';
 
 interface HeaderProps {
   onSearchClick: () => void;
 }
 
 export const Header = ({ onSearchClick }: HeaderProps) => {
-  const { isDark, toggleTheme } = useTheme();
+  // const { isDark, toggleTheme } = useTheme();
 
   return (
     <header className="bg-[var(--bg-secondary)] backdrop-blur-md p-2 flex items-center justify-center border-b z-[1000]">
