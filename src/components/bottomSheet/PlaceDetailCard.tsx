@@ -12,8 +12,6 @@ const PlaceDetailCard = ({}: PlaceDetailCardProps) => {
     return null;
   }
 
-  console.log("렌더링 시도 중:", location.name);
-
   return (
     <BottomSheetLayout>
       <div className="flex flex-col items-center px-4">

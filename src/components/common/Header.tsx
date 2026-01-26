@@ -1,12 +1,13 @@
-import { Search } from 'lucide-react';
+import { Search, Sun, Moon } from 'lucide-react';
 import { IconButton } from './IconButton';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface HeaderProps {
   onSearchClick: () => void;
 }
 
 export const Header = ({ onSearchClick }: HeaderProps) => {
-  // const { isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <header className="bg-[var(--bg-secondary)] backdrop-blur-md p-2 flex items-center justify-center border-b z-[1000]">
@@ -21,14 +22,13 @@ export const Header = ({ onSearchClick }: HeaderProps) => {
           label="검색" 
         />
         {
-          /* 향 후 다크 모드 기능 추가 시 활성화
-          <IconButton 
-            icon={isDark ? Sun : Moon} 
-            onClick={toggleTheme} 
-            label="테마 변경" 
-          />
-          */
-        }
+        /* 향 후 다크 모드 기능 추가 시 활성화
+        <IconButton 
+          icon={isDark ? Sun : Moon} 
+          onClick={toggleTheme} 
+          label="테마 변경" 
+        />
+        */}
       </div>
     </header>
   );

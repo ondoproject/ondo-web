@@ -53,6 +53,8 @@ const MapController = () => {
           duration: 0.5,
         });
       }
+    } else {
+      map.closePopup();
     }
   }, [map, selectedLocation, isCollapsed]);
 
