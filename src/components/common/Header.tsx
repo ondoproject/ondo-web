@@ -1,6 +1,5 @@
-import { Search, Sun, Moon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { IconButton } from './IconButton';
-import { useTheme } from '@/contexts';
 
 interface HeaderProps {
   onSearchClick: () => void;
