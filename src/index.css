@@ -62,6 +62,7 @@ body {
 
 #root {
   min-height: 100vh;
+  color-scheme: light only; /* 일부 브라우저에서 강제 반전 방지 */
 }
 
 ::-webkit-scrollbar {
