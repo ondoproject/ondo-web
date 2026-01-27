@@ -20,7 +20,7 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
         'z-[1000]',
         'transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]',
         isCollapsed 
-        ? 'translate-y-[calc(100%-180px-env(safe-area-inset-bottom))]' 
+        ? 'translate-y-[calc(100%-52px-env(safe-area-inset-bottom))]' 
         : 'translate-y-0',
         'pb-safe'
       )}
