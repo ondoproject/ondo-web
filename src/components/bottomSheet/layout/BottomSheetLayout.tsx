@@ -20,7 +20,7 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
         'z-[1000]',
         'transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]',
         isCollapsed 
-        ? 'translate-y-[calc(100%-60px-env(safe-area-inset-bottom))]' 
+        ? 'translate-y-[calc(100%-180px-env(safe-area-inset-bottom))]' 
         : 'translate-y-0',
         'pb-safe'
       )}
@@ -50,7 +50,15 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
                 <p className="whitespace-nowrap">위로 스와이프</p>
             </div>
         </div>
-        {children}
+        <div
+            className={cn(
+                'px-5 pb-6',
+                'transition-all duration-400 overflow-y-auto',
+                isCollapsed ? 'h-30 max-h-30' : 'opacity-100 max-h-[220px]'
+            )}
+        >
+            {children}
+        </div>
     </div>
   );
 };
