@@ -1,5 +1,6 @@
-import { Search } from 'lucide-react';
+import { Search, Sun, Moon } from 'lucide-react';
 import { IconButton } from './IconButton';
+import { useTheme } from '@/contexts';
 
 interface HeaderProps {
   onSearchClick: () => void;
@@ -21,7 +22,7 @@ export const Header = ({ onSearchClick }: HeaderProps) => {
           label="검색" 
         />
         {
-        /* 향 후 다크 모드 기능 추가 시 활성화
+        /* 다크 모드 비활성화
         <IconButton 
           icon={isDark ? Sun : Moon} 
           onClick={toggleTheme} 

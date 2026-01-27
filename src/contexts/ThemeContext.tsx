@@ -11,23 +11,17 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme') as Theme;
-      if (saved) return saved;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    return 'light';
-  });
+  const [theme, setTheme] = useState<Theme>('light'); // 항상 라이트 모드로 고정
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    // if (theme === 'dark') {
+    //   root.classList.add('dark');
+    // } else {
+    //   root.classList.remove('dark');
+    // }
     localStorage.setItem('theme', theme);
+    root.classList.remove('dark'); // 다크 모드 비활성화
   }, [theme]);
 
   const toggleTheme = () => {
