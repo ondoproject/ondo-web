@@ -23,8 +23,7 @@
   --map-filter: saturate(1.1) brightness(1.05);
 }
 
-.dark {
-  /* Dark mode */
+/* .dark {
   --bg-primary: #0d0d23;
   --bg-secondary: rgba(15, 15, 35, 0.95);
   --bg-card: rgba(255, 255, 255, 0.05);
@@ -41,7 +40,7 @@
   --shadow-color: rgba(255, 107, 237, 0.3);
   --glow-opacity: 0.8;
   --map-filter: brightness(0.7) saturate(1.2);
-}
+} */
 
 * {
   margin: 0;
