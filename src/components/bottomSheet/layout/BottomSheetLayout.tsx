@@ -12,14 +12,17 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
   return (
     <div
       className={cn(
-        'absolute bottom-0 left-0 right-0 min-h-[320px] max-h-[90vh]',
+        'absolute bottom-0 left-0 right-0 min-h-[320px] max-h-[100dvh]',
         'bg-[var(--bg-secondary)] backdrop-blur-lg',
         'rounded-t-3xl',
         'border-t border-[var(--border-color)]',
         'shadow-[0_-4px_30px_rgba(0,0,0,0.15)]',
         'z-[1000]',
         'transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]',
-        isCollapsed ? 'translate-y-[calc(100%-60px)]' : 'translate-y-0'
+        isCollapsed 
+        ? 'translate-y-[calc(100%-60px-env(safe-area-inset-bottom))]' 
+        : 'translate-y-0',
+        'pb-safe'
       )}
     >
         <div
