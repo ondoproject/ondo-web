@@ -21,9 +21,9 @@ export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) =
       {/* Content */}
       <div
         className={cn(
-          'px-5 pb-6 overflow-y-auto',
-          'transition-all duration-400',
-          isCollapsed ? 'max-h-10 pb-0' : 'opacity-100 max-h-[220px]'
+          'px-5 pb-6',
+          'transition-all duration-400 overflow-y-auto',
+          isCollapsed ? 'max-h-20 pb-0' : 'opacity-100 max-h-[220px]'
         )}
       >
         <div className="mb-4">

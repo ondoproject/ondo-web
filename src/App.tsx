@@ -5,6 +5,7 @@ import { Header, CategoryPills, SearchModal, MapContainer, BottomSheet } from '@
 import type { Location } from '@/types';
 import { BottomSheetProvider, useBottomSheet } from '@/contexts/BottomSheetContext';
 import PlaceDetailCard from './components/bottomSheet/PlaceDetailCard';
+import { cn } from './utils';
 
 const AppContent = () => {
   const { locations, categories, isLoading, error } = useLocations();
@@ -73,7 +74,10 @@ const AppContent = () => {
   }
 
   return (
-    <div className="max-w-[430px] mx-auto min-h-screen bg-[var(--bg-primary)] relative overflow-hidden">
+    <div className={cn(
+      "max-w-[430px] mx-auto h-[calc(100dvh-130px)] min-h-screen", 
+      "bg-[var(--bg-primary)] relative overflow-hidden isolation-auto transform-gpu",
+    )}>
       <Header onSearchClick={() => setIsSearchOpen(true)} />
       
       <CategoryPills
