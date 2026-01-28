@@ -7,6 +7,8 @@ import { useLocations } from "@/hooks";
 import { Location } from "@/types";
 import { cn } from "@/utils";
 import { useMemo, useState } from "react";
+import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
 
 const MainPage = () => {
   const { locations, categories, isLoading, error } = useLocations();
@@ -53,25 +55,11 @@ const MainPage = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
-        <div className="text-center">
-          <div className="text-4xl mb-4 animate-bounce">🌡️</div>
-          <p className="text-[var(--text-secondary)]">로딩 중...</p>
-        </div>
-      </div>
-    );
+    return <LoadingPage />;
   }
 
   if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
-        <div className="text-center">
-          <div className="text-4xl mb-4">😢</div>
-          <p className="text-[var(--text-secondary)]">{error}</p>
-        </div>
-      </div>
-    );
+    return <ErrorPage error={error} />;
   }
 
   return (
