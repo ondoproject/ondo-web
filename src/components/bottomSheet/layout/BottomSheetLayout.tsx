@@ -52,9 +52,9 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
         </div>
         <div
             className={cn(
-                'px-5 pb-6',
-                'transition-all duration-400 overflow-y-auto',
-                isCollapsed ? 'h-30 max-h-30' : 'opacity-100 max-h-[220px]'
+                'px-5 pb-2 flex flex-col',
+                'transition-all duration-400',
+                isCollapsed ? 'h-30 max-h-30' : 'opacity-100 max-h-[240px]'
             )}
         >
             {children}

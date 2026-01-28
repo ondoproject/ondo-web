@@ -16,13 +16,13 @@ export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) =
   return (
     <BottomSheetLayout>
       {/* Content */}
-      <div className="mb-4">
+      <div className="mb-4 flex-shrink-0">
         <p className="text-md text-[var(--accent-taupe)] font-bold">
           광안리 로컬들이 추천해요
         </p>
       </div>
 
-      <div className="flex flex-col h-full overflow-y-auto pb-2 scrollbar-thin scrollbar-thumb-gradient">
+      <div className="flex flex-col min-h-0 overflow-y-auto pb-2 scrollbar-thin scrollbar-thumb-gradient">
         {locations.map((location) => (
           <PlaceCard
             key={location.id}
