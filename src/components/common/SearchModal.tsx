@@ -39,7 +39,7 @@ export const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => 
         className={cn(
           'w-full max-w-sm',
           'bg-[var(--bg-secondary)] backdrop-blur-md',
-          'rounded-2xl p-6',
+          'rounded-2xl px-4 py-6',
           'border border-[var(--border-color)]',
           'shadow-[0_20px_60px_rgba(0,0,0,0.3)]',
           'transition-all duration-300',
@@ -48,45 +48,47 @@ export const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => 
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--bg-card)] flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--border-color)] transition-colors"
+          className="absolute top-4 right-2 w-8 h-8 rounded-full flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--border-color)] transition-colors"
         >
-          <X className="w-4 h-4" />
+          <X className="w-6 h-6" />
         </button>
 
         <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
-          <Search className="w-5 h-5" />
           장소 검색
         </h3>
 
-        <form onSubmit={handleSubmit} className="flex gap-2.5">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="맛집, 카페, 바 검색..."
-            autoFocus
-            className={cn(
-              'flex-1 px-4 py-3.5',
-              'rounded-xl border-[1.5px] border-[var(--border-color)]',
-              'bg-[var(--bg-card)]',
-              'text-[var(--text-primary)] placeholder:text-[var(--text-muted)]',
-              'outline-none transition-all duration-300',
-              'focus:border-accent-pink focus:shadow-[0_0_20px_var(--shadow-color)]'
-            )}
-          />
-          <button
-            type="submit"
-            className={cn(
-              'px-5 py-3.5 rounded-xl',
-              'bg-gradient-to-r from-accent-pink/30 to-accent-purple/30',
-              'border border-accent-pink/50',
-              'text-white font-semibold',
-              'transition-all duration-300',
-              'hover:shadow-[0_4px_20px_var(--shadow-color)]'
-            )}
-          >
-            검색
-          </button>
+        <form onSubmit={handleSubmit} className="flex gap-2">
+          <div className={cn(
+            'flex flex-row justify-between w-full',
+          )}>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="맛집, 카페, 바 검색..."
+              autoFocus
+              className={cn(
+                'px-2 py-4',
+                'rounded-xl',
+                'bg-[var(--bg-card)]',
+                'text-[var(--text-primary)] placeholder:text-[var(--text-muted)]',
+                'outline-0 transition-all duration-300',
+                'focus:shadow-[0_0_20px_var(--shadow-color)]'
+              )}
+            />
+            <button
+              type="submit"
+              className={cn(
+                'p-4 rounded-xl',
+                'border border-[var(--accent-taupe)]',
+                'text-black font-bold',
+                'transition-all duration-300',
+                'hover:shadow-[0_4px_20px_var(--shadow-color)]'
+              )}
+            >
+              <Search className="w-5 h-5" />
+            </button>
+          </div>
         </form>
       </div>
     </div>
