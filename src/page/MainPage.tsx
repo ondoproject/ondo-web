@@ -34,6 +34,7 @@ const MainPage = () => {
           loc.address?.toLowerCase().includes(query) ||
           loc.categories.some((cat) => cat.toLowerCase().includes(query))
       );
+      setSelectedLocation(filtered.length > 0 ? filtered[0] : null);
     }
 
     return filtered;
@@ -42,6 +43,7 @@ const MainPage = () => {
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
     setSelectedLocation(null);
+    setSearchQuery('');
     expand(); 
   };
 
@@ -50,6 +52,7 @@ const MainPage = () => {
   };
 
   const handleLocationSelect = (location: Location) => {
+    setSearchQuery('');
     setSelectedLocation(location);
     expand();
   };
