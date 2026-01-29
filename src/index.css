@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --vh: 1vh;
   /* Light mode */
   --bg-primary: #ffffff;
   --bg-secondary: #F2EDE4;
@@ -60,9 +61,11 @@ body {
 }
 
 #root {
-  height: 100vh;
-  overflow: hidden;
+  height: 100dvh;
+  height: calc(var(--vh) * 100);
+  min-height: calc(var(--vh) * 100);
   color-scheme: light only; /* 일부 브라우저에서 강제 반전 방지 */
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {

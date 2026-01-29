@@ -64,7 +64,7 @@ const MainPage = () => {
 
   return (
     <div className={cn(
-      "max-w-[430px] mx-auto h-[100dvh] min-h-screen", 
+      "max-w-[430px] mx-auto h-[calc(var(--vh)*100)] min-h-screen",
       "bg-[var(--bg-primary)] relative overflow-hidden isolation-auto transform-gpu",
     )}>
       <Header onSearchClick={() => setIsSearchOpen(true)} />
@@ -75,7 +75,7 @@ const MainPage = () => {
         onSelect={handleCategorySelect}
       />
 
-      <div className="relative h-[calc(100vh-130px)]">
+      <div className="relative h-[calc(var(--vh)*100-130px)]">
         <MapContainer
           locations={filteredLocations}
           onLocationSelect={handleLocationSelect}
