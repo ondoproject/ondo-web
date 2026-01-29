@@ -41,7 +41,7 @@ const MapController = () => {
       const latlng: [number, number] = [selectedLocation.py, selectedLocation.px];
       if (!isCollapsed) {
         const point = map.latLngToContainerPoint(latlng);
-        point.y -= 160;
+        point.y += 160;
         const adjustedLatLng = map.containerPointToLatLng(point);
         map.setView(adjustedLatLng, currentZoom, {
           animate: true,
