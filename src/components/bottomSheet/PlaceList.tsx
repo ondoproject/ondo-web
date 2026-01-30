@@ -2,12 +2,12 @@ import type { Location } from '@/types';
 import { PlaceCard } from '../common/PlaceCard';
 import BottomSheetLayout from './layout/BottomSheetLayout';
 
-interface BottomSheetProps {
+interface PlaceListProps {
   locations: Location[];
   onLocationSelect: (location: Location) => void;
 }
 
-export const BottomSheet = ({ locations, onLocationSelect }: BottomSheetProps) => {
+export const PlaceList = ({ locations, onLocationSelect }: PlaceListProps) => {
 
   const handleCardClick = (location: Location) => {
     onLocationSelect(location);

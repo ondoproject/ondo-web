@@ -1,4 +1,4 @@
-import { BottomSheet, SearchModal, MapContainer } from "@/components";
+import { SearchModal, MapContainer, PlaceList } from "@/components";
 import PlaceDetailCard from "@/components/bottomSheet/PlaceDetailCard";
 import { CategoryPills } from "@/components/common/CategoryPills";
 import { Header } from "@/components/common/Header";
@@ -88,7 +88,7 @@ const MainPage = () => {
           selectedLocation !== null ? (
             <PlaceDetailCard />
           ) : (
-            <BottomSheet
+            <PlaceList
               locations={filteredLocations}
               onLocationSelect={handleLocationSelect}
             />
