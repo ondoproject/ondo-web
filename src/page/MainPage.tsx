@@ -18,23 +18,25 @@ const MainPage = () => {
   const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const filteredLocations = useMemo(() => {
-    let filtered = locations;
-
-    // 카테고리 필터
-    if (selectedCategory !== '전체') {
-      filtered = filtered.filter((loc) => loc.categories.includes(selectedCategory));
-    }
-
-    // 검색 필터
+    let filtered = locations; 
+    
     if (searchQuery) {
+      setSelectedCategory('전체');
+
       const query = searchQuery.toLowerCase();
+      
       filtered = filtered.filter(
         (loc) =>
           loc.name.toLowerCase().includes(query) ||
           loc.address?.toLowerCase().includes(query) ||
           loc.categories.some((cat) => cat.toLowerCase().includes(query))
       );
+      
       setSelectedLocation(filtered.length > 0 ? filtered[0] : null);
+    }
+
+    if (selectedCategory !== '전체') {
+      filtered = filtered.filter((loc) => loc.categories.includes(selectedCategory));
     }
 
     return filtered;

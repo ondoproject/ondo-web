@@ -61,7 +61,7 @@ export const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => 
 
         <form onSubmit={handleSubmit} className="flex gap-2">
           <div className={cn(
-            'flex flex-row justify-between w-full',
+            'flex flex-row gap-2 justify-between w-full',
           )}>
             <input
               type="text"
@@ -70,7 +70,7 @@ export const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => 
               placeholder="맛집, 카페, 바 검색..."
               autoFocus
               className={cn(
-                'px-2 py-4',
+                'px-2 py-4 flex-1',
                 'rounded-xl',
                 'bg-[var(--bg-card)]',
                 'text-[var(--text-primary)] placeholder:text-[var(--text-muted)]',
