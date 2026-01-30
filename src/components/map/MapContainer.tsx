@@ -36,12 +36,23 @@ const MapController = () => {
   const { selectedLocation, isCollapsed } = useBottomSheet();
 
   useEffect(() => {
-    if (selectedLocation) {
+    if (!selectedLocation) {
+      map.closePopup();
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
       const currentZoom = map.getZoom();
       const latlng: [number, number] = [selectedLocation.py, selectedLocation.px];
+
       if (!isCollapsed) {
+        // 계산 전 지도의 크기를 재계산하도록 강제 (중요!)
+        map.invalidateSize(); 
+
+        // 현재 시점의 정확한 컨테이너 포인트 추출
         const point = map.latLngToContainerPoint(latlng);
-        point.y += 160;
+        point.y += 160; 
+        
         const adjustedLatLng = map.containerPointToLatLng(point);
         map.setView(adjustedLatLng, currentZoom, {
           animate: true,
@@ -53,11 +64,11 @@ const MapController = () => {
           duration: 0.5,
         });
       }
-    } else {
-      map.closePopup();
-    }
-  }, [map, selectedLocation, isCollapsed]);
+    }, 100);
 
+    return () => clearTimeout(timeoutId);
+  }, [map, selectedLocation, isCollapsed]);
+  
   return null;
 };
 
