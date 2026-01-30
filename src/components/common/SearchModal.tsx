@@ -16,12 +16,14 @@ export const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => 
     if (query.trim()) {
       onSearch(query.trim());
       onClose();
+      setQuery('');
     }
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
+      setQuery('');
     }
   };
 
