@@ -5,6 +5,7 @@ import { MAP_CONFIG, TILE_URLS, TILE_ATTRIBUTION } from '@/constants';
 import type { Location } from '@/types';
 import { LocationMarker } from './LocationMarker';
 import { useBottomSheet } from '@/contexts/BottomSheetContext';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
 interface MapContainerProps {
   locations: Location[];
@@ -86,13 +87,20 @@ export const MapContainer = ({ locations, onLocationSelect }: MapContainerProps)
         <TileLayerSwitcher />
         <MapController />
         
-        {locations.map((location) => (
-          <LocationMarker
-            key={location.id}
-            location={location}
-            onSelect={onLocationSelect}
-          />
-        ))}
+        <MarkerClusterGroup
+          chunkedLoading
+          maxClusterRadius={50}
+          showCoverageOnHover={false}
+        >
+          {locations.map((location) => (
+            <LocationMarker
+              key={location.id}
+              location={location}
+              onSelect={onLocationSelect}
+            />
+          ))}
+        </MarkerClusterGroup>
+
       </LeafletMapContainer>
     </div>
   );
