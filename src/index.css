@@ -11,12 +11,10 @@
   --text-primary: #4a4a4a;
   --text-secondary: #8a7a7a;
   --text-muted: #aaa;
-  --accent-pink: #ff6b9c;
-  --accent-cyan: #00b4d8;
-  --accent-purple: #9d4edd;
   --accent-orange: #ff9f1c;
   --accent-taupe: #755338;
   --accent-bage: #f9d898;
+  --accent-brown: rgb(64, 40, 13);
   --border-color: rgba(136, 91, 44, 0.3);
   --border-accent-color: rgba(136, 91, 44, 0.5);
   --shadow-color: rgba(136, 91, 44, 0.4);
