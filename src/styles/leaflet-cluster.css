@@ -1,0 +1,33 @@
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+
+.marker-cluster {
+  background-clip: padding-box;
+  background-color: rgba(75, 15, 15, 0.2) !important; 
+}
+
+.marker-cluster div {
+  background-color: var(--accent-brown) !important; 
+  color: #ffffff !important;           
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.marker-cluster-small div {
+  background-color: var(--accent-bage) !important; 
+}
+
+.marker-cluster-medium div {
+  background-color: var(--accent-taupe) !important;
+}
+
+.marker-cluster-large div {
+  background-color: var(--accent-brown) !important; 
+}
