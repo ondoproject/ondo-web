@@ -10,13 +10,16 @@ interface CategoryPillsProps {
 }
 
 export const CategoryPills = ({ categories, selected, onSelect }: CategoryPillsProps) => {
-  const allCategories = ['전체', ...categories];
+  const allCategories: Category[] = [
+    { id: 0, name: '전체' },
+    ...categories
+  ];
 
   return (
     <div className="flex gap-2 p-4 overflow-x-auto bg-[var(--bg-secondary)] scrollbar-hide justify-center items-center">
       {allCategories.map((category) => {
         const isActive = selected === category.name;
-        const Icon = category === 'All' ? Sparkles : getCategoryIcon(category.name);
+        const Icon = category.id === 0 ? Sparkles : getCategoryIcon(category.name);
 
         return (
           <button
