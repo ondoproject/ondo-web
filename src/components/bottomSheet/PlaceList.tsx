@@ -1,15 +1,15 @@
-import type { Location } from '@/types';
+import type { Store } from '@/types';
 import { PlaceCard } from '../common/PlaceCard';
 import BottomSheetLayout from './layout/BottomSheetLayout';
 
 interface PlaceListProps {
-  locations: Location[];
-  onLocationSelect: (location: Location) => void;
+  locations: Store[];
+  onLocationSelect: (location: Store) => void;
 }
 
 export const PlaceList = ({ locations, onLocationSelect }: PlaceListProps) => {
 
-  const handleCardClick = (location: Location) => {
+  const handleCardClick = (location: Store) => {
     onLocationSelect(location);
   };
 
@@ -25,7 +25,7 @@ export const PlaceList = ({ locations, onLocationSelect }: PlaceListProps) => {
       <div className="flex flex-col min-h-0 overflow-y-auto pb-2 scrollbar-thin scrollbar-thumb-gradient">
         {locations.map((location) => (
           <PlaceCard
-            key={location.id}
+            key={location.sid}
             location={location}
             onClick={() => handleCardClick(location)}
           />

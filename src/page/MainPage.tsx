@@ -4,21 +4,21 @@ import { CategoryPills } from "@/components/common/CategoryPills";
 import { Header } from "@/components/common/Header";
 import { useBottomSheet } from "@/contexts/BottomSheetContext";
 import { useLocations } from "@/hooks";
-import { Location } from "@/types";
+import { Store } from "@/types";
 import { cn } from "@/utils";
 import { useMemo, useState } from "react";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 
 const MainPage = () => {
-  const { locations, categories, isLoading, error } = useLocations();
+  const { stores, categories, isLoading, error } = useLocations();
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const filteredLocations = useMemo(() => {
-    let filtered = locations; 
+    let filtered = stores;
     
     if (searchQuery) {
       setSelectedCategory('전체');
@@ -40,7 +40,7 @@ const MainPage = () => {
     }
 
     return filtered;
-  }, [locations, selectedCategory, searchQuery]);
+  }, [stores, selectedCategory, searchQuery]);
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
@@ -53,7 +53,7 @@ const MainPage = () => {
     setSearchQuery(query);
   };
 
-  const handleLocationSelect = (location: Location) => {
+  const handleLocationSelect = (location: Store) => {
     setSearchQuery('');
     setSelectedLocation(location);
     expand();

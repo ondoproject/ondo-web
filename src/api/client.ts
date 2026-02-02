@@ -6,6 +6,6 @@ export const apiClient = axios.create({
     'Content-Type': 'application/json',
   },
   params: {
-    apikey: import.meta.env.VITE_API_KEY,
+    //apikey: import.meta.env.VITE_API_KEY,
   },
 });

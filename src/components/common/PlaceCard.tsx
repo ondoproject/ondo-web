@@ -1,9 +1,9 @@
-import type { Location } from '@/types';
+import type { Store } from '@/types';
 import { cn, transformEngCategory } from '@/utils';
 import RouteButton from './RouteButton';
 
 interface PlaceCardProps {
-  location: Location;
+  location: Store;
   onClick?: () => void;
 }
 
@@ -23,7 +23,7 @@ export const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
       )}
     >
       <img
-        src={location.thumbnail}
+        src={location.thumbnailUri}
         alt={location.name}
         className="w-[100px] h-[100px] object-cover"
       />

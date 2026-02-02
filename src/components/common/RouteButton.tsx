@@ -1,9 +1,9 @@
-import { Location } from "@/types";
+import { Store } from "@/types";
 import { navigateLocate } from "@/utils/route";
 import { MoveRight } from "lucide-react";
 
 interface RouteButtonProps {
-  location: Location;
+  location: Store;
 }
 
 const RouteButton = ({ location }: RouteButtonProps) => {

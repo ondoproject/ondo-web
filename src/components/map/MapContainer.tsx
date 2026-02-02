@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { MapContainer as LeafletMapContainer, TileLayer, useMap } from 'react-leaflet';
 import { useTheme } from '@/contexts';
 import { MAP_CONFIG, TILE_URLS, TILE_ATTRIBUTION } from '@/constants';
-import type { Location } from '@/types';
+import type { Store } from '@/types';
 import { LocationMarker } from './LocationMarker';
 import { useBottomSheet } from '@/contexts/BottomSheetContext';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 interface MapContainerProps {
-  locations: Location[];
-  onLocationSelect?: (location: Location) => void;
+  locations: Store[];
+  onLocationSelect?: (location: Store) => void;
 }
 
 // 타일 레이어를 동적으로 변경하기 위한 컴포넌트
@@ -44,7 +44,7 @@ const MapController = () => {
 
     const timeoutId = setTimeout(() => {
       const currentZoom = map.getZoom();
-      const latlng: [number, number] = [selectedLocation.py, selectedLocation.px];
+      const latlng: [number, number] = [selectedLocation.latitude, selectedLocation.longitude];
 
       if (!isCollapsed) {
         // 계산 전 지도의 크기를 재계산하도록 강제 (중요!)
@@ -94,7 +94,7 @@ export const MapContainer = ({ locations, onLocationSelect }: MapContainerProps)
         >
           {locations.map((location) => (
             <LocationMarker
-              key={location.id}
+              key={location.sid}
               location={location}
               onSelect={onLocationSelect}
             />

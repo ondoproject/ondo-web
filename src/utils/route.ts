@@ -1,7 +1,7 @@
-import { Location } from "@/types";
+import { Store } from "@/types";
 
-export const navigateLocate = (location: Location) => {
-    const { px: dLongitude, py: dLatitude, name: dName } = location;
+export const navigateLocate = (location: Store) => {
+    const { longitude: dLongitude, latitude: dLatitude, name: dName } = location;
     /* 모바일 환경일 경우 CHECK - (User-Agent 문자열 검사 방식) */
     const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 

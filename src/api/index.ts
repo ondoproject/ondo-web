@@ -1,2 +1,2 @@
 export * from './client';
-export * from './locations';
+export * from './stores.ts';

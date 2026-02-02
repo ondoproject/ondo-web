@@ -1,6 +1,6 @@
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import type { Location } from '@/types';
+import type { Store } from '@/types';
 import { getCategoryStyle } from '@/constants';
 import { LocationPopup } from './LocationPopup';
 import { useMemo } from 'react';
@@ -9,13 +9,13 @@ import { MapPin } from 'lucide-react';
 import { useBottomSheet } from '@/contexts/BottomSheetContext';
 
 interface LocationMarkerProps {
-  location: Location;
-  onSelect?: (location: Location) => void;
+  location: Store;
+  onSelect?: (location: Store) => void;
 }
 
 export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
   const { selectedLocation } = useBottomSheet();
-  const isSelected = selectedLocation?.id === location.id;
+  const isSelected = selectedLocation?.sid === location.sid;
   const category = location.categories[0] ?? '맛집';
   const style = getCategoryStyle(category)
   const container = useMemo(() => document.createElement('div'), []);
@@ -50,7 +50,7 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
   return (
     <>
       <Marker
-        position={[location.py, location.px]}
+        position={[location.latitude, location.longitude]}
         icon={icon}
         eventHandlers={{
           click: () => onSelect?.(location),

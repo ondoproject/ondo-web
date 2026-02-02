@@ -15,9 +15,9 @@ const PlaceDetailCard = ({}: PlaceDetailCardProps) => {
   return (
     <BottomSheetLayout>
       <div className="flex flex-col items-center px-4">
-        {location.thumbnail && (
+        {location.thumbnailUri && (
           <img 
-            src={location.thumbnail} 
+            src={location.thumbnailUri}
             alt={location.name} 
             className="w-full h-40 rounded-lg object-cover" 
           />

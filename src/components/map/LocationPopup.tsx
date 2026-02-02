@@ -1,7 +1,7 @@
-import type { Location } from '@/types';
+import type { Store } from '@/types';
 
 interface LocationPopupProps {
-  location: Location;
+  location: Store;
 }
 
 export const LocationPopup = ({ location }: LocationPopupProps) => {
