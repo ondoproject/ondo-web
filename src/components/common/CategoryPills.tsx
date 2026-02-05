@@ -4,10 +4,11 @@ import {Category} from "@/types/category.ts";
 interface CategoryPillsProps {
   categories: Category[];
   selected: string;
+  selectedMainCategoryId?: number | null;
   onSelect: (category: string) => void;
 }
 
-export const CategoryPills = ({ categories, selected, onSelect }: CategoryPillsProps) => {
+export const CategoryPills = ({ categories, selected, selectedMainCategoryId, onSelect }: CategoryPillsProps) => {
   const allCategories: Category[] = [
     { id: 0, name: 'ALL' },
     ...[...categories].reverse()
@@ -22,7 +23,9 @@ export const CategoryPills = ({ categories, selected, onSelect }: CategoryPillsP
         "items-center justify-around"
       )}>
         {allCategories.map((category) => {
-          const isActive = selected === category.name;
+          const isActive = 
+            selected === category.name || 
+            selectedMainCategoryId === category.id;
 
           return (
             <button

@@ -10,15 +10,17 @@ import { useMemo, useState } from "react";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import { CATEGORY_MAP } from "@/constants/categories";
-import { DetailCategoryPills } from "@/components/common/DetailCategoryPills";
+import SubCategoryPills from "@/components/common/SubCategoryPills";
 
 const MainPage = () => {
   const { stores, categories, mainCategories, isLoading, error } = useLocations();
+  const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
+
   const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [selectedSubCategory, setSelectedSubCategory] = useState<String | null>('');
   const [selectedMainCategoryId, setSelectedMainCategoryId] = useState<number | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const filteredLocations = useMemo(() => {
     let filtered = stores;
@@ -56,13 +58,16 @@ const MainPage = () => {
   
   const handleCategorySelect = (category: string) => {
     const categoryObj = categories.find(cat => cat.name === category);
+    const isMainCategory = mainCategories.some(mainCat => mainCat.name === category);
 
-    if (category === 'ALL') {
-      setSelectedMainCategoryId(null);
-    } else if (categoryObj) {
-      setSelectedMainCategoryId(categoryObj.id);
+    if (isMainCategory || category === 'ALL') {
+      setSelectedCategory(category);
+      setSelectedSubCategory(null); 
+      setSelectedMainCategoryId(category === 'ALL' ? null : categoryObj?.id || null);
+    } else {
+      setSelectedSubCategory(category);
     }
-
+    
     setSelectedCategory(category);
     setSelectedLocation(null);
     setSearchQuery('');
@@ -97,6 +102,7 @@ const MainPage = () => {
       <CategoryPills
         categories={mainCategories}
         selected={selectedCategory}
+        selectedMainCategoryId={selectedMainCategoryId}
         onSelect={handleCategorySelect}
       />
 
@@ -107,9 +113,9 @@ const MainPage = () => {
         />
 
         {selectedMainCategoryId !== null && subCategories.length > 0 && 
-          <DetailCategoryPills
+          <SubCategoryPills
             subCategories={subCategories}
-            selectedCategory={selectedCategory}
+            selectedCategory={selectedSubCategory}
             onSelect={handleCategorySelect}
           />
         }
