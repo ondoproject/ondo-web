@@ -5,12 +5,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: {
-          pink: 'var(--accent-pink)',
-          cyan: 'var(--accent-cyan)',
-          purple: 'var(--accent-purple)',
-          orange: 'var(--accent-orange)',
-        },
         surface: {
           primary: 'var(--bg-primary)',
           secondary: 'var(--bg-secondary)',
