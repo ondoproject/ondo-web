@@ -16,7 +16,7 @@ const MainPage = () => {
   const { stores, categories, mainCategories, isLoading, error } = useLocations();
   const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
-  const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [selectedSubCategory, setSelectedSubCategory] = useState<String | null>('');
   const [selectedMainCategoryId, setSelectedMainCategoryId] = useState<number | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
