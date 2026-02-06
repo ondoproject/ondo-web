@@ -2,7 +2,6 @@ import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import type { Store } from '@/types';
 import { getCategoryStyle } from '@/constants';
-import { LocationPopup } from './LocationPopup';
 import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { MapPin } from 'lucide-react';
@@ -25,7 +24,7 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
       className: "", 
       html: container, 
       iconAnchor: [16, 32],
-      popupAnchor: [-8, -32],
+      popupAnchor: [-8, 56],
     });
   }, [container, isSelected]);
 
@@ -57,7 +56,9 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
         }}
       >
         <Popup>
-          <LocationPopup location={location} />
+          <span className="text-base font-bold text-[var(--text-taupe)]">
+            {location.name}
+          </span>
         </Popup>
       </Marker>
       {createPortal(IconComponent, container)}
