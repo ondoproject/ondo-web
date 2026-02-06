@@ -16,7 +16,7 @@ const SubCategoryPills = ({ subCategories, selectedCategory, onSelect }: SubCate
                 onClick={() => onSelect(sub.name)} 
                 className={cn(
                     "w-[95.7px] h-[37.6px] shrink-0",
-                    "px-6 py-2 rounded-full whitespace-nowrap text-sm transition-all",
+                    "p-2 rounded-full whitespace-nowrap text-sm transition-all",
                     "bg-[var(--bg-secondary)] backdrop-blur shadow-md border",
                     selectedCategory === sub.name 
                     ? 'bg-[var(--bg-primary)] border-[var(--border-color)] text-[var(--text-taupe)] shadow-[inset_0px_2px_3px_var(--shadow-color)]'
