@@ -11,7 +11,7 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
   return (
     <div
       className={cn(
-        'absolute bottom-0 left-0 right-0 min-h-[320px] h-[40dvh]',
+        'absolute bottom-0 left-0 right-0 min-h-[280px] h-[52dvh]',
         'bg-[var(--bg-secondary)] backdrop-blur-lg',
         'rounded-t-3xl',
         'border-t border-[var(--border-color)]',
@@ -41,7 +41,7 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
             className={cn(
                 'px-5 pb-2 flex flex-col',
                 'transition-all duration-400',
-                isCollapsed ? 'h-30 max-h-30' : 'opacity-100 max-h-[280px]'
+                isCollapsed ? 'h-20 max-h-20' : 'opacity-100 max-h-[220px]'
             )}
         >
             {children}
