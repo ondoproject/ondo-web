@@ -7,19 +7,19 @@ interface CategoryStyle {
 
 const CATEGORY_STYLES: Record<string, CategoryStyle> = {
   dining: {
-    color: '#A569BD',
-    borderClass: 'border-[#A569BD]',
-    glowClass: 'bg-[var(--accent-brown)]',
+    color: 'var(--accent-orange)',
+    borderClass: 'border-[var(--accent-orange)]',
+    glowClass: 'bg-[var(--accent-orange)]',
   },
   cafe: {
-    color: '#F39C12',
-    borderClass: 'border-[#F39C12]',
+    color: 'var(--accent-taupe)',
+    borderClass: 'border-[var(--accent-taupe)]',
     glowClass: 'bg-[var(--accent-taupe)]',
   },
   bar: {
-    color: '#3498DB',
-    borderClass: 'border-[#3498DB]',
-    glowClass: 'bg-[var(--accent-bage)]',
+    color: 'var(--accent-brown)',
+    borderClass: 'border-[var(--accent-brown)]',
+    glowClass: 'bg-[var(--accent-brown)]',
   },
 };
 

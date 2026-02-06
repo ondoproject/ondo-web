@@ -15,7 +15,7 @@ interface LocationMarkerProps {
 export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
   const { selectedLocation } = useBottomSheet();
   const isSelected = selectedLocation?.sid === location.sid;
-  const category = location.categories[0] ?? '맛집';
+  const category = location.categories[1] ?? 'dining';
   const style = getCategoryStyle(category)
   const container = useMemo(() => document.createElement('div'), []);
 
@@ -56,7 +56,7 @@ export const LocationMarker = ({ location, onSelect }: LocationMarkerProps) => {
         }}
       >
         <Popup>
-          <span className="text-base font-bold text-[var(--text-taupe)]">
+          <span className="text-sm font-bold text-[var(--text-taupe)]">
             {location.name}
           </span>
         </Popup>
