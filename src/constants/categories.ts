@@ -1,54 +1,40 @@
-import {Coffee, type LucideIcon, MapPin, Utensils, Wine} from 'lucide-react';
-
+// 타입을 명확히 정의하여 자동완성과 에러 체크를 지원합니다.
 interface CategoryStyle {
-  icon: LucideIcon;
   color: string;
-  bgClass: string;
   borderClass: string;
-  textClass: string;
   glowClass: string;
 }
 
-export const CATEGORY_STYLES: Record<string, CategoryStyle> = {
-  '맛집': {
-    icon: Utensils,
-    color: 'var(--accent-bage)',
-    bgClass: 'bg-[--accent-bage]',
-    borderClass: 'border-[--accent-bage]',
-    textClass: 'text-[--accent-bage]',
-    glowClass: 'shadow-[0_0_20px_rgba(255,107,156,var(--glow-opacity))]',
+const CATEGORY_STYLES: Record<string, CategoryStyle> = {
+  dining: {
+    color: 'var(--accent-orange)',
+    borderClass: 'border-[var(--accent-orange)]',
+    glowClass: 'bg-[var(--accent-orange)]',
   },
-  '카페': {
-    icon: Coffee,
-    color: 'black',
-    bgClass: 'bg-black',
-    borderClass: 'border-black',
-    textClass: 'text-black',
-    glowClass: 'shadow-[0_0_20px_rgba(0,212,255,var(--glow-opacity))]',
-  },
-  '술집': {
-    icon: Wine,
+  cafe: {
     color: 'var(--accent-taupe)',
-    bgClass: 'bg-[--accent-taupe]',
-    borderClass: 'border-[--accent-taupe]',
-    textClass: 'text-[--accent-taupe]',
-    glowClass: 'shadow-[0_0_20px_rgba(167,139,250,var(--glow-opacity))]',
-  }
+    borderClass: 'border-[var(--accent-taupe)]',
+    glowClass: 'bg-[var(--accent-taupe)]',
+  },
+  bar: {
+    color: 'var(--accent-brown)',
+    borderClass: 'border-[var(--accent-brown)]',
+    glowClass: 'bg-[var(--accent-brown)]',
+  },
 };
 
 const DEFAULT_STYLE: CategoryStyle = {
-  icon: MapPin,
-  color: 'pink',
-  bgClass: 'bg-[--accent-bage]',
-  borderClass: 'border-[--accent-bage]',
-  textClass: 'text-[--accent-bage]',
-  glowClass: 'shadow-[0_0_20px_rgba(255,107,156,var(--glow-opacity))]',
+  color: '#000000',
+  borderClass: 'border-gray-300',
+  glowClass: 'bg-gray-300',
 };
 
 export const getCategoryStyle = (category: string): CategoryStyle => {
-  return CATEGORY_STYLES[category] ?? DEFAULT_STYLE;
+  return CATEGORY_STYLES[category.toLowerCase()] || DEFAULT_STYLE;
 };
 
-export const getCategoryIcon = (category: string): LucideIcon => {
-  return CATEGORY_STYLES[category]?.icon ?? MapPin;
+export const CATEGORY_MAP: Record<number, number[]> = {
+  4: [5, 7, 11, 12, 17 ,18, 19, 20],
+  10: [1, 6, 9, 13, 16, 19],
+  14: [2, 3, 15],
 };

@@ -1,6 +1,5 @@
 import { useBottomSheet } from "@/contexts/BottomSheetContext";
 import { cn } from "@/utils/cn";
-import { ChevronUp } from "lucide-react";
 
 interface BottomSheetLayoutProps {
   children: React.ReactNode;
@@ -12,15 +11,15 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
   return (
     <div
       className={cn(
-        'absolute bottom-0 left-0 right-0 min-h-[320px] max-h-[90dvh]',
-        'bg-[var(--bg-secondary)] backdrop-blur-lg',
-        'rounded-t-3xl',
+        'absolute bottom-0 left-0 right-0 min-h-[280px] h-[52dvh]',
+        'bg-[var(--bg-secondary)] backdrop-blur-lg rounded-t-3xl',
+        'overscroll-contain touch-pan-y',
         'border-t border-[var(--border-color)]',
-        'shadow-[0_-4px_30px_rgba(0,0,0,0.15)]',
+        'shadow-[0_-4px_8px_rgba(0,0,0,0.25)]',
         'z-[1000]',
         'transition-transform duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]',
         isCollapsed 
-        ? 'translate-y-[calc(100%-52px-env(safe-area-inset-bottom))]' 
+        ? 'translate-y-[calc(100%-28px-env(safe-area-inset-bottom))]' 
         : 'translate-y-0',
         'pb-safe'
       )}
@@ -28,33 +27,21 @@ export const BottomSheetLayout = ({ children }: BottomSheetLayoutProps) => {
         <div
             {...handlers}
             onClick={toggle}
-            className="flex flex-col items-center py-3 px-5 cursor-grab active:cursor-grabbing"
+            className="flex flex-col items-center pt-4 pb-2 cursor-grab active:cursor-grabbing"
         >
             <div
                 className={cn(
-                    'w-10 h-1 rounded-full mb-2',
+                    'w-10 h-1 rounded-full bg-[var(--bg-muted)]',
                     'transition-all duration-300',
-                    isCollapsed 
-                    ? 'bg-[var(--text-muted)] shadow-[0_0_10px_var(--shadow-color)]' 
-                    : 'bg-[var(--border-color)]'
+                    'shadow-[0_0_10px_var(--shadow-color)]' 
                 )}
             ></div>
-            <div
-                className={cn(
-                    'flex items-center text-[12px] text-[var(--text-muted)]',
-                    'transition-opacity duration-300',
-                    isCollapsed ? 'opacity-100' : 'opacity-0'
-                )}
-            >
-                <ChevronUp className="animate-bounce-up" size={12} />
-                <p className="whitespace-nowrap">위로 스와이프</p>
-            </div>
         </div>
         <div
             className={cn(
                 'px-5 pb-2 flex flex-col',
                 'transition-all duration-400',
-                isCollapsed ? 'h-30 max-h-30' : 'opacity-100 max-h-[240px]'
+                isCollapsed ? 'h-20 max-h-20' : 'opacity-100 max-h-[320px]'
             )}
         >
             {children}

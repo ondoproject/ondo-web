@@ -1,5 +1,5 @@
 import type { Store } from '@/types';
-import { cn, transformEngCategory } from '@/utils';
+import { cn } from '@/utils';
 import RouteButton from './RouteButton';
 
 interface PlaceCardProps {
@@ -7,8 +7,8 @@ interface PlaceCardProps {
   onClick?: () => void;
 }
 
-export const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
-  const category = location.categories[0] ?? '맛집';
+const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
+  const category = location.categories[0] ?? 'dining';
 
   return (
     <div
@@ -32,7 +32,7 @@ export const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
           {location.name}
         </h2>
         <p className="text-md text-black pb-2 border-b border-[var(--text-muted)]">
-          {transformEngCategory(category)}
+          {category}
         </p>
         <div className="pt-2 flex justify-between items-center gap-4 text-xs">
           <p className="text-black font-semibold">
@@ -44,3 +44,5 @@ export const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
     </div>
   );
 };
+
+export default PlaceCard;

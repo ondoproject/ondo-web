@@ -1,5 +1,5 @@
 import type { Store } from '@/types';
-import { PlaceCard } from '../common/PlaceCard';
+import PlaceCard from '../common/PlaceCard';
 import BottomSheetLayout from './layout/BottomSheetLayout';
 
 interface PlaceListProps {

@@ -9,19 +9,24 @@ import { cn } from "@/utils";
 import { useMemo, useState } from "react";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
+import { CATEGORY_MAP } from "@/constants/categories";
+import SubCategoryPills from "@/components/common/SubCategoryPills";
 
 const MainPage = () => {
-  const { stores, categories, isLoading, error } = useLocations();
-  const [selectedCategory, setSelectedCategory] = useState('전체');
+  const { stores, categories, mainCategories, isLoading, error } = useLocations();
+  const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
+
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [selectedSubCategory, setSelectedSubCategory] = useState<String | null>('');
+  const [selectedMainCategoryId, setSelectedMainCategoryId] = useState<number | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const filteredLocations = useMemo(() => {
     let filtered = stores;
     
     if (searchQuery) {
-      setSelectedCategory('전체');
+      setSelectedCategory('ALL');
 
       const query = searchQuery.toLowerCase();
       
@@ -35,19 +40,39 @@ const MainPage = () => {
       setSelectedLocation(filtered.length > 0 ? filtered[0] : null);
     }
 
-    if (selectedCategory !== '전체') {
+    if (selectedCategory !== 'ALL') {
       filtered = filtered.filter((loc) => loc.categories.includes(selectedCategory));
     }
 
     return filtered;
   }, [stores, selectedCategory, searchQuery]);
 
+  const subCategories = useMemo(() => {
+    if (!selectedMainCategoryId) return [];
+
+    const subIds = CATEGORY_MAP[selectedMainCategoryId] || [];
+    const subCategories = categories.filter(cat => subIds.includes(cat.id));
+
+    return subCategories;
+  }, [selectedMainCategoryId, categories]);
+  
   const handleCategorySelect = (category: string) => {
+    const categoryObj = categories.find(cat => cat.name === category);
+    const isMainCategory = mainCategories.some(mainCat => mainCat.name === category);
+
+    if (isMainCategory || category === 'ALL') {
+      setSelectedCategory(category);
+      setSelectedSubCategory(null); 
+      setSelectedMainCategoryId(category === 'ALL' ? null : categoryObj?.id || null);
+    } else {
+      setSelectedSubCategory(category);
+    }
+    
     setSelectedCategory(category);
     setSelectedLocation(null);
     setSearchQuery('');
     expand(); 
-  };
+  }; 
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -70,13 +95,14 @@ const MainPage = () => {
   return (
     <div className={cn(
       "max-w-[430px] mx-auto h-[calc(var(--vh)*100)] min-h-screen",
-      "bg-[var(--bg-primary)] relative overflow-hidden isolation-auto transform-gpu",
+      "bg-[var(--bg-primary)] relative",
     )}>
       <Header onSearchClick={() => setIsSearchOpen(true)} />
       
       <CategoryPills
-        categories={categories}
+        categories={mainCategories}
         selected={selectedCategory}
+        selectedMainCategoryId={selectedMainCategoryId}
         onSelect={handleCategorySelect}
       />
 
@@ -85,6 +111,14 @@ const MainPage = () => {
           locations={filteredLocations}
           onLocationSelect={handleLocationSelect}
         />
+
+        {selectedMainCategoryId !== null && subCategories.length > 0 && 
+          <SubCategoryPills
+            subCategories={subCategories}
+            selectedCategory={selectedSubCategory}
+            onSelect={handleCategorySelect}
+          />
+        }
 
         {
           selectedLocation !== null ? (

@@ -8,16 +8,18 @@
   --bg-primary: #ffffff;
   --bg-secondary: #F2EDE4;
   --bg-card: #E6E0D4;
+  --bg-muted: #0000004D;
+  --text-muted: #1F1A16;
   --text-primary: #4a4a4a;
   --text-secondary: #8a7a7a;
-  --text-muted: #aaa;
+  --text-taupe: #8B5A2B;
   --accent-orange: #ff9f1c;
   --accent-taupe: #755338;
   --accent-bage: #f9d898;
   --accent-brown: rgb(64, 40, 13);
   --border-color: rgba(136, 91, 44, 0.3);
   --border-accent-color: rgba(136, 91, 44, 0.5);
-  --shadow-color: rgba(136, 91, 44, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.25);
   --glow-opacity: 0.4;
   --map-filter: saturate(1.1) brightness(1.05);
 }
