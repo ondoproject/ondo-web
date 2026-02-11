@@ -1,16 +1,15 @@
 import { MapContainer, PlaceList } from "@/components";
 import PlaceDetailCard from "@/components/bottomSheet/PlaceDetailCard";
 import { CategoryPills } from "@/components/common/CategoryPills";
-import { Header } from "@/components/common/Header";
 import { useBottomSheet } from "@/contexts/BottomSheetContext";
 import { useLocations } from "@/hooks";
 import { Store } from "@/types";
-import { cn } from "@/utils";
 import { useMemo, useState } from "react";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import { CATEGORY_MAP } from "@/constants/categories";
 import SubCategoryPills from "@/components/common/SubCategoryPills";
+import ScreenLayout from "@/layout/ScreenLayout";
 
 const MainPage = () => {
   const { stores, categories, mainCategories, isLoading, error } = useLocations();
@@ -74,12 +73,7 @@ const MainPage = () => {
   }
 
   return (
-    <div className={cn(
-      "max-w-[430px] mx-auto h-[calc(var(--vh)*100)] min-h-screen",
-      "bg-[var(--bg-primary)] relative",
-    )}>
-      <Header />
-      
+    <ScreenLayout>
       <CategoryPills
         categories={mainCategories}
         selected={selectedCategory}
@@ -112,7 +106,7 @@ const MainPage = () => {
           )
         } 
       </div>
-    </div>
+    </ScreenLayout>
   );
 };
 

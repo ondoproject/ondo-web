@@ -1,5 +1,5 @@
 import RouteButton from "@/components/common/RouteButton";
-import BottomSheetLayout from "./layout/BottomSheetLayout";
+import BottomSheetLayout from "../../layout/BottomSheetLayout";
 import { useBottomSheet } from "@/contexts/BottomSheetContext";
 
 interface PlaceDetailCardProps {}
