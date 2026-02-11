@@ -17,34 +17,22 @@ const MainPage = () => {
   const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const [selectedCategory, setSelectedCategory] = useState('ALL');
-  const [selectedSubCategory, setSelectedSubCategory] = useState<String | null>('');
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>('');
   const [selectedMainCategoryId, setSelectedMainCategoryId] = useState<number | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredLocations = useMemo(() => {
     let filtered = stores;
-    
-    if (searchQuery) {
-      setSelectedCategory('ALL');
-
-      const query = searchQuery.toLowerCase();
-      
-      filtered = filtered.filter(
-        (loc) =>
-          loc.name.toLowerCase().includes(query) ||
-          loc.address?.toLowerCase().includes(query) ||
-          loc.categories.some((cat) => cat.toLowerCase().includes(query))
-      );
-      
-      setSelectedLocation(filtered.length > 0 ? filtered[0] : null);
-    }
 
     if (selectedCategory !== 'ALL') {
       filtered = filtered.filter((loc) => loc.categories.includes(selectedCategory));
+
+      if (selectedSubCategory !== null && selectedSubCategory !== '') {
+        filtered = filtered.filter((loc) => loc.categories.includes(selectedSubCategory));
+      }
     }
 
     return filtered;
-  }, [stores, selectedCategory, searchQuery]);
+  }, [stores, selectedCategory, selectedSubCategory]);
 
   const subCategories = useMemo(() => {
     if (!selectedMainCategoryId) return [];
@@ -69,12 +57,10 @@ const MainPage = () => {
     
     setSelectedCategory(category);
     setSelectedLocation(null);
-    setSearchQuery('');
     expand(); 
   }; 
 
   const handleLocationSelect = (location: Store) => {
-    setSearchQuery('');
     setSelectedLocation(location);
     expand();
   };

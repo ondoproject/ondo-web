@@ -8,7 +8,7 @@ interface PlaceCardProps {
 }
 
 const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
-  const category = location.categories[0] ?? 'dining';
+  const category = location.categories[1] ?? 'dining';
 
   return (
     <div
