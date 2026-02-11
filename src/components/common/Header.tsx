@@ -1,12 +1,15 @@
 import { Search } from 'lucide-react';
 import { IconButton } from './IconButton';
+import { useNavigate } from 'react-router-dom';
 
-interface HeaderProps {
-  onSearchClick: () => void;
-}
-
-export const Header = ({ onSearchClick }: HeaderProps) => {
+export const Header = () => {
   // const { isDark, toggleTheme } = useTheme();
+
+  const navigate = useNavigate();
+
+  const navigateExplore = () => {
+    navigate('/explore', { state: { from: 'main' } });   
+  }
 
   return (
     <header className="bg-[var(--bg-secondary)] backdrop-blur-md p-2 flex items-center justify-center border-b z-[1000]">
@@ -17,7 +20,7 @@ export const Header = ({ onSearchClick }: HeaderProps) => {
       <div className="flex items-center gap-2.5 ml-auto">
         <IconButton 
           icon={Search} 
-          onClick={onSearchClick} 
+          onClick={navigateExplore} 
           label="검색" 
         />
         {

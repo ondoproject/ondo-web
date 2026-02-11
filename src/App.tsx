@@ -3,6 +3,7 @@ import { BottomSheetProvider } from '@/contexts/BottomSheetContext';
 import { Route, Routes } from 'react-router';
 import MainPage from './page/MainPage';
 import { useEffect } from 'react';
+import ExplorePage from './page/ExplorePage';
 
 const App = () => {
   useEffect(() => {
@@ -27,6 +28,7 @@ const App = () => {
       <BottomSheetProvider>
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/explore" element={<ExplorePage />} />
         </Routes>
       </BottomSheetProvider>
     </ThemeProvider>

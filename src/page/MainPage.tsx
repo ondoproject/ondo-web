@@ -1,4 +1,4 @@
-import { SearchModal, MapContainer, PlaceList } from "@/components";
+import { MapContainer, PlaceList } from "@/components";
 import PlaceDetailCard from "@/components/bottomSheet/PlaceDetailCard";
 import { CategoryPills } from "@/components/common/CategoryPills";
 import { Header } from "@/components/common/Header";
@@ -19,7 +19,6 @@ const MainPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [selectedSubCategory, setSelectedSubCategory] = useState<String | null>('');
   const [selectedMainCategoryId, setSelectedMainCategoryId] = useState<number | null>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredLocations = useMemo(() => {
@@ -74,10 +73,6 @@ const MainPage = () => {
     expand(); 
   }; 
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
-
   const handleLocationSelect = (location: Store) => {
     setSearchQuery('');
     setSelectedLocation(location);
@@ -97,7 +92,7 @@ const MainPage = () => {
       "max-w-[430px] mx-auto h-[calc(var(--vh)*100)] min-h-screen",
       "bg-[var(--bg-primary)] relative",
     )}>
-      <Header onSearchClick={() => setIsSearchOpen(true)} />
+      <Header />
       
       <CategoryPills
         categories={mainCategories}
@@ -131,12 +126,6 @@ const MainPage = () => {
           )
         } 
       </div>
-
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onSearch={handleSearch}
-      />
     </div>
   );
 };
