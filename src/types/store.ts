@@ -8,4 +8,5 @@ export interface Store {
   categories: string[];
   thumbnailUri: string;
   description?: string | null;
+  isViral?: boolean;
 }
