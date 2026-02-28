@@ -9,6 +9,7 @@ interface PlaceCardProps {
 
 const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
   const category = location.categories[1] ?? 'dining';
+  const isClickable = !!onClick;
 
   return (
     <div
@@ -19,7 +20,8 @@ const PlaceCard = ({ location, onClick }: PlaceCardProps) => {
         'border-t border-b border-[var(--text-muted)]',
         'text-left',
         'transition-all duration-300 cursor-pointer',
-        'hover:shadow-[0_8px_20px_var(--shadow-color)]'
+        'hover:shadow-[0_8px_20px_var(--shadow-color)]',
+        isClickable && 'cursor-pointer hover:shadow-[0_8px_20px_var(--shadow-color)]'
       )}
     >
       <img
