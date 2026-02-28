@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Home, Search } from 'lucide-react';
 import { IconButton } from './IconButton';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,11 +8,22 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const navigateExplore = () => {
-    navigate('/explore', { state: { from: 'main' } });   
+    navigate('/explore', { state: { from: 'main' } });
+  }
+
+  const navigateHome = () => {
+    navigate('/');
   }
 
   return (
     <header className="bg-[var(--bg-secondary)] backdrop-blur-md p-2 flex items-center justify-center border-b z-[1000]">
+      <div className="flex items-center gap-2.5 ml-auto">
+        <IconButton 
+          icon={Home} 
+          onClick={navigateHome} 
+        />
+      </div>
+
       <h1 className="items-center justify-center flex flex-1 text-3xl text-[#86530c] ml-12">
         ONDO
       </h1>

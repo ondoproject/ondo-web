@@ -12,7 +12,6 @@ const ScreenLayout = ({ children }: ScreenLayoutProps) => {
           "bg-[var(--bg-primary)] relative",
     )}>
         <Header />
-        
         {children}
     </div>
   );
