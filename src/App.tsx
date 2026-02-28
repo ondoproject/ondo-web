@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import MainPage from './page/MainPage';
 import { useEffect } from 'react';
 import ExplorePage from './page/ExplorePage';
+import { LocationProvider } from './contexts/LocationContext';
 
 const App = () => {
   useEffect(() => {
@@ -25,12 +26,14 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <BottomSheetProvider>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/explore" element={<ExplorePage />} />
-        </Routes>
-      </BottomSheetProvider>
+      <LocationProvider>
+        <BottomSheetProvider>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/explore" element={<ExplorePage />} />
+            </Routes>
+        </BottomSheetProvider>
+      </LocationProvider>
     </ThemeProvider>
   );
 };

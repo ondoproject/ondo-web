@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import type {Store} from '@/types';
 import {Category} from "@/types/category.ts";
 import {getCategories} from "@/api/categories.ts";
@@ -20,7 +20,7 @@ export const useLocations = (): UseLocationsReturn => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const loadLocations = async () => {
+  const loadLocations = async () => { 
     try {
       setIsLoading(true);
       setError(null);
