@@ -1,51 +1,37 @@
-import { SearchModal, MapContainer, PlaceList } from "@/components";
+import { MapContainer, PlaceList } from "@/components";
 import PlaceDetailCard from "@/components/bottomSheet/PlaceDetailCard";
 import { CategoryPills } from "@/components/common/CategoryPills";
-import { Header } from "@/components/common/Header";
 import { useBottomSheet } from "@/contexts/BottomSheetContext";
 import { useLocations } from "@/hooks";
 import { Store } from "@/types";
-import { cn } from "@/utils";
 import { useMemo, useState } from "react";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import { CATEGORY_MAP } from "@/constants/categories";
 import SubCategoryPills from "@/components/common/SubCategoryPills";
+import ScreenLayout from "@/layout/ScreenLayout";
 
 const MainPage = () => {
   const { stores, categories, mainCategories, isLoading, error } = useLocations();
   const { expand, selectedLocation, setSelectedLocation } = useBottomSheet();
 
   const [selectedCategory, setSelectedCategory] = useState('ALL');
-  const [selectedSubCategory, setSelectedSubCategory] = useState<String | null>('');
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>('');
   const [selectedMainCategoryId, setSelectedMainCategoryId] = useState<number | null>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredLocations = useMemo(() => {
     let filtered = stores;
-    
-    if (searchQuery) {
-      setSelectedCategory('ALL');
-
-      const query = searchQuery.toLowerCase();
-      
-      filtered = filtered.filter(
-        (loc) =>
-          loc.name.toLowerCase().includes(query) ||
-          loc.address?.toLowerCase().includes(query) ||
-          loc.categories.some((cat) => cat.toLowerCase().includes(query))
-      );
-      
-      setSelectedLocation(filtered.length > 0 ? filtered[0] : null);
-    }
 
     if (selectedCategory !== 'ALL') {
       filtered = filtered.filter((loc) => loc.categories.includes(selectedCategory));
+
+      if (selectedSubCategory !== null && selectedSubCategory !== '') {
+        filtered = filtered.filter((loc) => loc.categories.includes(selectedSubCategory));
+      }
     }
 
     return filtered;
-  }, [stores, selectedCategory, searchQuery]);
+  }, [stores, selectedCategory, selectedSubCategory]);
 
   const subCategories = useMemo(() => {
     if (!selectedMainCategoryId) return [];
@@ -70,16 +56,10 @@ const MainPage = () => {
     
     setSelectedCategory(category);
     setSelectedLocation(null);
-    setSearchQuery('');
     expand(); 
   }; 
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
-
   const handleLocationSelect = (location: Store) => {
-    setSearchQuery('');
     setSelectedLocation(location);
     expand();
   };
@@ -93,12 +73,7 @@ const MainPage = () => {
   }
 
   return (
-    <div className={cn(
-      "max-w-[430px] mx-auto h-[calc(var(--vh)*100)] min-h-screen",
-      "bg-[var(--bg-primary)] relative",
-    )}>
-      <Header onSearchClick={() => setIsSearchOpen(true)} />
-      
+    <ScreenLayout>
       <CategoryPills
         categories={mainCategories}
         selected={selectedCategory}
@@ -131,13 +106,7 @@ const MainPage = () => {
           )
         } 
       </div>
-
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onSearch={handleSearch}
-      />
-    </div>
+    </ScreenLayout>
   );
 };
 

@@ -1,5 +1,5 @@
 import RouteButton from "@/components/common/RouteButton";
-import BottomSheetLayout from "./layout/BottomSheetLayout";
+import BottomSheetLayout from "../../layout/BottomSheetLayout";
 import { useBottomSheet } from "@/contexts/BottomSheetContext";
 
 interface PlaceDetailCardProps {}
@@ -31,8 +31,8 @@ const PlaceDetailCard = ({}: PlaceDetailCardProps) => {
           </div>
           <div className="w-full flex flex-row justify-between text-black items-center gap-2">
             <div className="flex">
-              <a href={`tel:${location.phone}`}>
-                {location.phone ? (
+              <a href={`tel:${location.tel}`}>
+                {location.tel ? (
                     <button className="px-4 py-2 bg-[var(--bg-accent)] text-white rounded-lg shadow-md hover:bg-[var(--bg-accent-hover)] transition-colors">
                       전화걸기
                     </button>
