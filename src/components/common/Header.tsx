@@ -17,16 +17,16 @@ export const Header = () => {
 
   return (
     <header className="bg-[var(--bg-secondary)] backdrop-blur-md p-2 flex items-center justify-center border-b z-[1000]">
-      <div className="flex items-center gap-2.5 ml-auto">
+      <div className="flex items-center gap-2.5">
         <IconButton 
           icon={Home} 
           onClick={navigateHome} 
         />
       </div>
 
-      <h1 className="items-center justify-center flex flex-1 text-3xl text-[#86530c] ml-12">
-        ONDO
-      </h1>
+      <div className="flex flex-1 justify-center items-center mt-2">
+        <img src="/logo.png" alt="온도 로고" className="h-full w-18 object-contain" />
+      </div>
       
       <div className="flex items-center gap-2.5 ml-auto">
         <IconButton 

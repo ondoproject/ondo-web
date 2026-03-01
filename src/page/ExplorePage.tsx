@@ -18,8 +18,8 @@ const ExplorePage = ({}) => {
 
   return (
     <ScreenLayout>
-      <div className="flex flex-col w-full h-full justify-center items-center bg-[var(--bg-secondary)] p-4">
-        <p className="text-lg mb-2">당신의 '온도'를 찾아보세요.</p>
+      <div className="flex flex-col w-full h-full bg-[var(--bg-secondary)] p-4">
+        <p className="text-lg text-start font-bold items-start">당신의 '온도'를 찾아보세요.</p>
         <div className="w-full flex flex-row flex-nowrap gap-2 overflow-x-auto py-4">
           <ExploreMenuTab 
             imageUrl="/viral_location.png"
