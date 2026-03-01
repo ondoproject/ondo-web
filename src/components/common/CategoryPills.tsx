@@ -17,9 +17,9 @@ export const CategoryPills = ({ categories, selected, selectedMainCategoryId, on
   return (
     <div className="w-full bg-[var(--bg-secondary)]">
       <div className={cn(
-        "px-2.5 py-2 gap-2 border-2 border-[var(--bg-muted)]",
-        "flex rounded-3xl", 
-        "overflow-x-auto bg-[var(--bg-secondary)]",
+        "px-0.5 py-2 gap-2 border-2 border-[var(--bg-muted)]",
+        "flex rounded-3xl overflow-hidden", 
+        "bg-[var(--bg-secondary)]",
         "items-center justify-around"
       )}>
         {allCategories.map((category) => {

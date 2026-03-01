@@ -68,6 +68,31 @@ body {
   overflow: hidden;
 }
 
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(24px);
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.screen.exit {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -86,3 +111,8 @@ body {
   animation: float 1s ease-in-out infinite;
 }
 
+/* 화면 내리면 새로고침 되는 모바일 브라우저 기본 동작 제한 */
+.bottom-sheet {
+  touch-action: none; /* 브라우저의 기본 터치 액션(새로고침 포함)을 완전히 차단 */
+  overscroll-behavior-y: contain; /* 스크롤 전파 차단 */
+}
