@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import type {Store} from '@/types';
 import {Category} from "@/types/category.ts";
 import {getCategories} from "@/api/categories.ts";
